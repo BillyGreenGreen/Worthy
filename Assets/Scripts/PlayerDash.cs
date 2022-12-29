@@ -31,6 +31,7 @@ public class PlayerDash : MonoBehaviour
 
     void Update()
     {
+        
         chargesUIText.text = charges.ToString();
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer > 0)
