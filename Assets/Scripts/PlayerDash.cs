@@ -46,7 +46,7 @@ public class PlayerDash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && charges > 0) // Check if the player pressed the dash button, is not already dashing, is not on dash cooldown, and has at least one dash charge
         {
             // Get the direction the player is moving
-            //dashDirection = rb.velocity;
+            dashDirection = rb.velocity;
 
             Vector3 cursorScreenSpace = Input.mousePosition;
 
@@ -54,7 +54,7 @@ public class PlayerDash : MonoBehaviour
             Vector3 cursorWorldSpace = Camera.main.ScreenToWorldPoint(cursorScreenSpace);
 
             // Get the direction from the player to the mouse cursor
-            dashDirection = cursorWorldSpace - transform.position;
+            //dashDirection = cursorWorldSpace - transform.position;
 
             // Start the dash
             StartCoroutine(Dash());
