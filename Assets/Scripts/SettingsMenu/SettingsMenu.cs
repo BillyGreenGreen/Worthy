@@ -48,22 +48,26 @@ public class SettingsMenu : MonoBehaviour
                 {
                     PlayerPrefs.SetString("ability1", e.keyCode.ToString());
                     PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 }
                 else if (currentKey.transform.name == "Ability2")
                 {
                     PlayerPrefs.SetString("ability2", e.keyCode.ToString());
                     PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 }
                 else if (currentKey.transform.name == "Ability3")
                 {
                     PlayerPrefs.SetString("ability3", e.keyCode.ToString());
                     PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 }
 
                 else if (currentKey.transform.name == "Ability4")
                 {
                     PlayerPrefs.SetString("ability4", e.keyCode.ToString());
                     PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 }
 
                 currentKey = null;
@@ -73,6 +77,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void ChangeKey(GameObject clicked)
     {
+        clicked.GetComponentInChildren<TextMeshProUGUI>().text = "Press a key...";
         currentKey = clicked;
     }
 }
