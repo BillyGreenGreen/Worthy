@@ -6,13 +6,10 @@ public class Mage : MonoBehaviour
 {
     //The two classes are Elementalist and Battle Mage
 
-
-
-
     //cooldowns
     private float timerGoldenGodCooldown = 10;
-    private float timerFlamePoolCooldown = 10;
-    private float timerIceSpikeCooldown = 10;
+    private float timerFlamePoolCooldown = 6;
+    private float timerIceSpikeCooldown = 3;
     private float timerEarthWardenCooldown = 10;
     private float timerFrozenOrbCooldown = 10;
     private float timerFlowingWaterCooldown = 10;
@@ -21,19 +18,33 @@ public class Mage : MonoBehaviour
 
 
     //timer starts
-    private float timerGoldenGod = 0;
-    private float timerFlamePool = 0;
-    private float timerIceSpike = 0;
+    public float timerGoldenGod = 0;
+    public float timerFlamePool = 0;
+    public float timerIceSpike = 0;
     private float timerEarthWarden = 0;
     private float timerFrozenOrb = 0;
     private float timerFlowingWater = 0;
     private float timerChainShock = 0;
     private float timerWillyShield = 0;
 
+    public GameObject IceSpikePrefab;
+    public GameObject shootingPoint;
+
+
+    List<string> abilities = new List<string>();
+
+    private void Start()
+    {
+        for (int i = 0; i < GameManager.instance.GM_abilities.Count; i++)
+        {
+
+        }
+    }
 
     private void Update()
     {
         GoldenGodTimer();
+        IceSpikeTimer();
     }
 
     //Skill Implementations
@@ -45,13 +56,12 @@ public class Mage : MonoBehaviour
     }
 
     //Elementalist Abilities
-
-    //Normal Abilities
-    void FlamePool()
+    void IceSpike()
     {
 
+        GameObject projectile = Instantiate(IceSpikePrefab, shootingPoint.transform.position, Quaternion.identity);
     }
-    void IceSpike()
+    void FlamePool()
     {
 
     }
@@ -84,11 +94,31 @@ public class Mage : MonoBehaviour
 
 
     //Skill Timers, place in update when made
+    void IceSpikeTimer()
+    {
+        if (timerIceSpike <= 0 && GameManager.instance.GM_abilities.Contains("IceSpike"))
+        {
+            string keyCodeString = PlayerPrefs.GetString("ability" + (GameManager.instance.GM_abilities.FindIndex(a => a.Contains("IceSpike")) + 1).ToString());
+            KeyCode parsedKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodeString, true);
+            if (Input.GetKeyDown(parsedKeyCode))
+            {
+                IceSpike();
+                timerIceSpike = timerIceSpikeCooldown;
+            }
+        }
+        else
+        {
+            timerIceSpike -= Time.deltaTime;
+        }
+    }
     void GoldenGodTimer()
     {
-        if (timerGoldenGod <= 0)
+        if (timerGoldenGod <= 0 && GameManager.instance.GM_abilities.Contains("GoldenGod"))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            
+            string keyCodeString = PlayerPrefs.GetString("ability" + (GameManager.instance.GM_abilities.FindIndex(a => a.Contains("GoldenGod")) + 1).ToString());
+            KeyCode parsedKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyCodeString, true);
+            if (Input.GetKeyDown(parsedKeyCode))
             {
                 GoldenGod();
                 timerGoldenGod = timerGoldenGodCooldown;

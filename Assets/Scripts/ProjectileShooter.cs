@@ -24,7 +24,7 @@ public class ProjectileShooter : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        print(mousePos);
+        //print(mousePos);
         // check if the left mouse button is pressed
         if (Input.GetMouseButtonDown(0) && !box.OverlapPoint(new Vector2(mousePos.x, mousePos.y)))
         {
