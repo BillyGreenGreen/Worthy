@@ -21,6 +21,7 @@ public class Ability
         this.hotkey = hotkey;
 
         switch(name){
+            //Mage
             case "Mage_FlamePool":
                 icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
                 cooldownTime = 10f;
@@ -29,6 +30,45 @@ public class Ability
                 icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
                 cooldownTime = 3f;
                 break;
+
+            case "Mage_ChainShock":
+                icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
+                cooldownTime = 5f;
+                break;
+
+
+
+            //No Ability
+            case "NoAbility":
+                icon = Resources.Load<Sprite>("Abilities/Circle");
+                cooldownTime = -1f;
+                break;
+            default:
+                icon = Resources.Load<Sprite>("Abilities/Circle");
+                cooldownTime = -1f;
+                break;
+        }
+    }
+
+    public void UpdateAbility(){
+        //use to update icons when ability is changed on hotbar
+        switch(this.name){
+            //Mage
+            case "Mage_FlamePool":
+                icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
+                cooldownTime = 10f;
+                break;
+            case "Mage_IceSpike":
+                icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
+                cooldownTime = 3f;
+                break;
+            case "Mage_ChainShock":
+                icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
+                cooldownTime = 5f;
+                break;
+
+
+            //NoAbility
             case "NoAbility":
                 icon = Resources.Load<Sprite>("Abilities/Circle");
                 cooldownTime = -1f;

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField]
     public Dictionary<int, Ability> GM_abilities = new Dictionary<int, Ability>();
+    public List<Ability> GM_usable_abilities = new List<Ability>();
     public TextMeshProUGUI debug;
 
     private void Awake()
@@ -28,6 +29,12 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start(){
+
+        //these will be used and updated when using the shop feature
+        GM_usable_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_ChainShock", KeyCode.None));
+
         GM_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1"))));
         GM_abilities.Add(2, new Ability("Mage_IceSpike", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2"))));
         GM_abilities.Add(3, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability3"))));
@@ -61,6 +68,12 @@ public class GameManager : MonoBehaviour
             if (ability.ready && Input.GetKeyDown(ability.hotkey))
             {
                 ActivateAbility(ability);
+                foreach (Ability ab in GM_abilities.Values){
+                    if (ab.name == ability.name){
+                        PutOnCooldown(ab);
+                    }
+                }
+                
             }
         }
     }
@@ -74,6 +87,11 @@ public class GameManager : MonoBehaviour
         if (ability.name.Contains("Mage")){
             Mage.ActivateAbility(ability.name);
         }
+    }
+
+    void PutOnCooldown(Ability ability){
+        ability.ready = false;
+        ability.cooldownTimer = ability.cooldownTime;
     }
 
     public void addAbility(string abilityName)

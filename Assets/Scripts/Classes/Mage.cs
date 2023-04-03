@@ -15,6 +15,9 @@ public static class Mage
             case "Mage_IceSpike":
                 IceSpike();
                 break;
+            case "Mage_ChainShock":
+                ChainShock();
+                break;
             default:
                 IceSpike();
                 break;    
@@ -39,6 +42,10 @@ public static class Mage
     {
         Debug.Log("FLAME POOL IN MAGE CLASS ACTIVATED");
     }
+    static void ChainShock()
+    {
+        Debug.Log("CHAIN SHOCK IN MAGE CLASS ACTIVATED");
+    }
     static void EarthWarden()
     {
 
@@ -51,10 +58,7 @@ public static class Mage
     {
 
     }
-    static void ChainShock()
-    {
-
-    }
+    
     static void WhistlingShield()
     {
 
