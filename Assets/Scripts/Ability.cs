@@ -35,6 +35,22 @@ public class Ability
                 icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
                 cooldownTime = 5f;
                 break;
+            case "Mage_EarthWarden":
+                icon = Resources.Load<Sprite>("Abilities/EarthWarden_500px");
+                cooldownTime = 30f;
+                break;
+            case "Mage_FlowingWater":
+                icon = Resources.Load<Sprite>("Abilities/FlowingWater_500px");
+                cooldownTime = 12f;
+                break;
+            case "Mage_FrozenOrb":
+                icon = Resources.Load<Sprite>("Abilities/FrozenOrb_500px");
+                cooldownTime = 8f;
+                break;
+            case "Mage_WhistlingShield":
+                icon = Resources.Load<Sprite>("Abilities/WhistlingShield_500px");
+                cooldownTime = 15f;
+                break;
 
 
 
@@ -62,9 +78,26 @@ public class Ability
                 icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
                 cooldownTime = 3f;
                 break;
+
             case "Mage_ChainShock":
                 icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
                 cooldownTime = 5f;
+                break;
+            case "Mage_EarthWarden":
+                icon = Resources.Load<Sprite>("Abilities/EarthWarden_500px");
+                cooldownTime = 30f;
+                break;
+            case "Mage_FlowingWater":
+                icon = Resources.Load<Sprite>("Abilities/FlowingWater_500px");
+                cooldownTime = 12f;
+                break;
+            case "Mage_FrozenOrb":
+                icon = Resources.Load<Sprite>("Abilities/FrozenOrb_500px");
+                cooldownTime = 8f;
+                break;
+            case "Mage_WhistlingShield":
+                icon = Resources.Load<Sprite>("Abilities/WhistlingShield_500px");
+                cooldownTime = 15f;
                 break;
 
 

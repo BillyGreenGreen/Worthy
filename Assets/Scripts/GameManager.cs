@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         GM_usable_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
         GM_usable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
         GM_usable_abilities.Add(new Ability("Mage_ChainShock", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_EarthWarden", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_FlowingWater", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_FrozenOrb", KeyCode.None));
+        GM_usable_abilities.Add(new Ability("Mage_WhistlingShield", KeyCode.None));
 
         GM_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1"))));
         GM_abilities.Add(2, new Ability("Mage_IceSpike", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2"))));

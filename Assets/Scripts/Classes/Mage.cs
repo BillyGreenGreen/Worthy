@@ -18,6 +18,18 @@ public static class Mage
             case "Mage_ChainShock":
                 ChainShock();
                 break;
+            case "Mage_EarthWarden":
+                EarthWarden();
+                break;
+            case "Mage_FlowingWater":
+                FlowingWater();
+                break;
+            case "Mage_FrozenOrb":
+                FrozenOrb();
+                break;
+            case "Mage_WhistlingShield":
+                WhistlingShield();
+                break;
             default:
                 IceSpike();
                 break;    
@@ -50,14 +62,15 @@ public static class Mage
     {
 
     }
-    static void FrozenOrb()
-    {
-
-    }
     static void FlowingWater()
     {
 
     }
+    static void FrozenOrb()
+    {
+
+    }
+    
     
     static void WhistlingShield()
     {
