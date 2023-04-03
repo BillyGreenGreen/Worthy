@@ -55,6 +55,10 @@ public class AbilityHotbar : MonoBehaviour
     }
 
     public void ChangeAbilityPopup(int abilitySlotNumber){
+        string abilityStuff = "Ability" + (abilitySlotNumber + 1);
+
+
+
 
         GameObject[] duplicates = GameObject.FindGameObjectsWithTag("AbilityGrid");
         if (duplicates.Length > 0){
@@ -66,23 +70,35 @@ public class AbilityHotbar : MonoBehaviour
             lastNum = 5;
             return;
         }
-        string abilityStuff = "Ability" + (abilitySlotNumber + 1);
+        
         GameObject abilityGrid = Instantiate(abilityGrid_PF);
         abilityGrid.transform.SetParent(GameObject.Find(abilityStuff).transform, false);
         abilityGrid.transform.position = GameObject.Find(abilityStuff).transform.position + new Vector3(0, 2.2f, 0);
 
+        List<string> abilitiesInPopup = new List<string>();
         foreach (var ability in GameManager.instance.GM_abilities.Values)
         {
-            GameObject newObj = new GameObject();
-            newObj.tag = "AbilityGrid";
-            Image newR = newObj.AddComponent<Image>();
-            newR.sprite = ability.icon;
-            newObj.AddComponent<LayoutElement>();
-            GameObject icon = Instantiate(newObj);
-            icon.transform.SetParent(abilityGrid.transform, false);
+            bool inPopup = false;
+            foreach (var s in abilitiesInPopup){
+                if (s.Contains(ability.name) || s.Contains("Ability")){
+                    inPopup = true;
+                }
+            }
+            if (!inPopup){
+                GameObject newObj = new GameObject();
+                newObj.tag = "AbilityGrid";
+                Image newR = newObj.AddComponent<Image>();
+                newR.sprite = ability.icon;
+                newObj.AddComponent<LayoutElement>();
+                GameObject icon = Instantiate(newObj);
+                icon.transform.SetParent(abilityGrid.transform, false);
+                abilitiesInPopup.Add(ability.name);
+            }
+        }
+        foreach (var s in abilitiesInPopup){
+            Debug.Log(s);
         }
         lastNum = abilitySlotNumber;
-        Debug.Log("CHEESE");
     }
 
 }
