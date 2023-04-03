@@ -79,15 +79,24 @@ public class AbilityHotbar : MonoBehaviour
         foreach (var ability in GameManager.instance.GM_abilities.Values)
         {
             bool inPopup = false;
+            
             foreach (var s in abilitiesInPopup){
-                if (s.Contains(ability.name) || s.Contains("Ability")){
+                Debug.Log(s);
+                if (s.Contains(ability.name)){
                     inPopup = true;
                 }
+            }
+
+            if (ability.name == "NoAbility"){
+                inPopup = true;
             }
             if (!inPopup){
                 GameObject newObj = new GameObject();
                 newObj.tag = "AbilityGrid";
                 Image newR = newObj.AddComponent<Image>();
+                Button button = newObj.AddComponent<Button>();
+                button.onClick.AddListener(delegate {ChangeAbility((abilitySlotNumber + 1), ability.name);});
+                
                 newR.sprite = ability.icon;
                 newObj.AddComponent<LayoutElement>();
                 GameObject icon = Instantiate(newObj);
@@ -95,10 +104,11 @@ public class AbilityHotbar : MonoBehaviour
                 abilitiesInPopup.Add(ability.name);
             }
         }
-        foreach (var s in abilitiesInPopup){
-            Debug.Log(s);
-        }
         lastNum = abilitySlotNumber;
+    }
+
+    void ChangeAbility(int slotToChange, string abilityName){
+        //change ability based on what slot we are clicked on and the ability name
     }
 
 }

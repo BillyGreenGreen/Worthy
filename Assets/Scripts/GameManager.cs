@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start(){
-        GM_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1")), 10f));
-        GM_abilities.Add(2, new Ability("Mage_IceSpike", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2")), 3f));
-        GM_abilities.Add(3, new Ability("Ability3", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability3")), -1f));
-        GM_abilities.Add(4, new Ability("Ability4", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability4")), -1f));
+        GM_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1"))));
+        GM_abilities.Add(2, new Ability("Mage_IceSpike", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2"))));
+        GM_abilities.Add(3, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability3"))));
+        GM_abilities.Add(4, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability4"))));
 
         string abilitiesFormatted = "";
 

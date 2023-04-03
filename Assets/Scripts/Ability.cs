@@ -15,22 +15,27 @@ public class Ability
     public bool ready = true;
     
     //implement all above
-    public Ability(string name, KeyCode hotkey, float cooldownTime)
+    public Ability(string name, KeyCode hotkey)
     {
         this.name = name;
         this.hotkey = hotkey;
-        this.cooldownTime = cooldownTime;
 
         switch(name){
             case "Mage_FlamePool":
                 icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
-
+                cooldownTime = 10f;
                 break;
             case "Mage_IceSpike":
                 icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
+                cooldownTime = 3f;
+                break;
+            case "NoAbility":
+                icon = Resources.Load<Sprite>("Abilities/Circle");
+                cooldownTime = -1f;
                 break;
             default:
-                icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
+                icon = Resources.Load<Sprite>("Abilities/Circle");
+                cooldownTime = -1f;
                 break;
         }
     }
