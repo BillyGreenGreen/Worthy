@@ -19,4 +19,9 @@ public class SceneSwitcher : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void S_SwitchToClassPicker()
+    {
+        SceneManager.LoadScene("ClassPicker");
+    }
 }

@@ -322,7 +322,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1835206619}
         m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
-        m_MethodName: S_SwitchToSampleScene
+        m_MethodName: S_SwitchToClassPicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
