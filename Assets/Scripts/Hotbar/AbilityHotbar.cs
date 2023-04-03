@@ -18,6 +18,7 @@ public class AbilityHotbar : MonoBehaviour
     public List<Image> cooldownRadialOverlays;
 
     public GameObject abilityGrid_PF;
+    private int lastNum;
     
     private Dictionary<int, Ability> availiableAbilities = new Dictionary<int, Ability>();
 
@@ -34,13 +35,7 @@ public class AbilityHotbar : MonoBehaviour
             else{
                 keybinds[count].text = ability.hotkey.ToString();
             }
-            count++;
-        }
-
-        count = 0;
-        foreach (Ability ability in availiableAbilities.Values){
-            Debug.Log(ability.icon);
-            abilityIcons[count].sprite = ability.icon.sprite;
+            abilityIcons[count].sprite = ability.icon;
             count++;
         }
     }
@@ -60,25 +55,33 @@ public class AbilityHotbar : MonoBehaviour
     }
 
     public void ChangeAbilityPopup(int abilitySlotNumber){
+
         GameObject[] duplicates = GameObject.FindGameObjectsWithTag("AbilityGrid");
         if (duplicates.Length > 0){
             foreach(GameObject go in duplicates){
                 Destroy(go);
             }
         }
+        if (lastNum == abilitySlotNumber){
+            lastNum = 5;
+            return;
+        }
         string abilityStuff = "Ability" + (abilitySlotNumber + 1);
-        Vector2 pos = new Vector2(0, 0);
         GameObject abilityGrid = Instantiate(abilityGrid_PF);
         abilityGrid.transform.SetParent(GameObject.Find(abilityStuff).transform, false);
-        abilityGrid.transform.position = transform.position + new Vector3(0, GetComponent<RectTransform>().rect.height, 0);
+        abilityGrid.transform.position = GameObject.Find(abilityStuff).transform.position + new Vector3(0, 2.2f, 0);
 
         foreach (var ability in GameManager.instance.GM_abilities.Values)
         {
-            //GameObject icon = Instantiate(ability.icon.sprite);
-            //icon.transform.SetParent(popup.transform.GetChild(0), false);
+            GameObject newObj = new GameObject();
+            newObj.tag = "AbilityGrid";
+            Image newR = newObj.AddComponent<Image>();
+            newR.sprite = ability.icon;
+            newObj.AddComponent<LayoutElement>();
+            GameObject icon = Instantiate(newObj);
+            icon.transform.SetParent(abilityGrid.transform, false);
         }
-        Vector2 v2 = new Vector2(0, 1053);
-        abilityGrid.transform.position = v2;
+        lastNum = abilitySlotNumber;
         Debug.Log("CHEESE");
     }
 
