@@ -1018,6 +1018,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1589192793}
     - target: {fileID: 5337413450055484461, guid: 6dc8f4ee6004b5345a5925b01e34cb27, type: 3}
+      propertyPath: enterNodeDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5337413450055484461, guid: 6dc8f4ee6004b5345a5925b01e34cb27, type: 3}
       propertyPath: lockAfterSelecting
       value: 0
       objectReference: {fileID: 0}
