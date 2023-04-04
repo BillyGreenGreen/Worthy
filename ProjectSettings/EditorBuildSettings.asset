@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ClassPicker.unity
     guid: b042edda0914d6546b713939f6dff58d
+  - enabled: 1
+    path: Assets/Scenes/MageMap.unity
+    guid: c0d81a269be30b84a9e78bf35a3f8fc6
   m_configObjects: {}
