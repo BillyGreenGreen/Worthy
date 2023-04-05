@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
 
     //Player Stats
     public string GM_class_selected;
-    private GameObject player;
 
     private void Awake()
     {

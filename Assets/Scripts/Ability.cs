@@ -19,8 +19,8 @@ public class Ability
     {
         this.name = name;
         this.hotkey = hotkey;
-
-        switch(name){
+        UpdateAbility();
+        /*switch(name){
             //Mage
             case "Mage_FlamePool":
                 icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
@@ -63,7 +63,7 @@ public class Ability
                 icon = Resources.Load<Sprite>("Abilities/Circle");
                 cooldownTime = -1f;
                 break;
-        }
+        }*/
     }
 
     public void UpdateAbility(){
