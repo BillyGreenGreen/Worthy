@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public List<Ability> GM_usable_abilities = new List<Ability>();
     public TextMeshProUGUI debug;
 
+    //Player Stats
+    public string GM_class_selected;
+    private GameObject player;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -30,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start(){
 
+        //abilities added for testing, will have switch case to add all usable abilities here.
         //these will be used and updated when using the shop feature
         GM_usable_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
         GM_usable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
@@ -51,6 +56,9 @@ public class GameManager : MonoBehaviour
             abilitiesFormatted += GM_abilities[i].hotkey + "\n";
         }
         debug.text = "Ability Debug:\n" + abilitiesFormatted;
+
+
+
     }
 
     void Update()

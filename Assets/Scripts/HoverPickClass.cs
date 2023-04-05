@@ -24,7 +24,8 @@ public class HoverPickClass : MonoBehaviour
         GameObject.Find("MageSelection").transform.position = new Vector3(0, -1700, 0);
     }
 
-    public void SwitchToMageMap(){
+    public void SwitchToMageMap(string subClass){
+        GameManager.instance.GM_class_selected = subClass;
         SceneManager.LoadScene("MageMap");
     }
 }
