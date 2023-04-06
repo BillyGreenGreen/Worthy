@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
                 
             }
         }
-        int index = 0;
+
         List<GameObject> gameObjectsToClear = new List<GameObject>();
         List<GameObject> keys = new List<GameObject>(GM_AbilityTimeInScene.Keys);
         foreach (GameObject prefab in keys){
@@ -98,8 +98,6 @@ public class GameManager : MonoBehaviour
                 Destroy(prefab);
                 gameObjectsToClear.Add(prefab);
             }
-             
-            index++;
         }
         foreach (GameObject go in gameObjectsToClear){
             GM_AbilityTimeInScene.Remove(go);

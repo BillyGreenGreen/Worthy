@@ -38,6 +38,9 @@ public static class Mage
     }
 
     //Skill Implementations
+    //All damage numbers will be calculated on enemies by checking what they are colliding with
+
+    //All duration abilities use GameManager.instance.AddAbilityInSceneTimer(prefab, duration);
 
     //Shared Mage Abilities
     static void MirrorImage()
