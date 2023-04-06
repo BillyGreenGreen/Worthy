@@ -39,15 +39,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         
         switch(other.transform.name){
-            case "Mage_FlamePool(Clone)":
-            Debug.Log("STAY:   " + health);
-            health -= Convert.ToInt32(Math.Floor(10 * Time.deltaTime));
-            /*timeColliding += Time.fixedDeltaTime;
-                if (timeColliding > 1f){
-                    health -= 10;
-                    timeColliding = 0f;
-                }*/
-            break;
+            
         }
     }
 

@@ -54,7 +54,7 @@ public static class Mage
         Debug.Log("ICE SPIKE IN MAGE CLASS ACTIVATED");
         //GameObject projectile = Instantiate(IceSpikePrefab, shootingPoint.transform.position, Quaternion.identity);
     }
-    static void FlamePool()
+    static void FlamePool()//DONE
     {
         Debug.Log("FLAME POOL IN MAGE CLASS ACTIVATED");
 
@@ -67,13 +67,14 @@ public static class Mage
     {
         Debug.Log("CHAIN SHOCK IN MAGE CLASS ACTIVATED");
     }
-    static void EarthWarden()
+    static void EarthWarden()//DONE
     {
-
+        Debug.Log("EARTH WARDEN IN MAGE CLASS ACTIVATED");
+        GameObject.Find("Player").GetComponent<Player>().AddShield(100);
     }
-    static void FlowingWater()
+    static void FlowingWater()//DONE
     {
-
+        HealOverTime.instance.ApplyHeal(GameObject.Find("Player").GetComponent<Player>(), 5);
     }
     static void FrozenOrb()
     {
@@ -91,4 +92,6 @@ public static class Mage
     {
 
     }
+
+    
 }

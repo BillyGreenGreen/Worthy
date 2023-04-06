@@ -20,50 +20,6 @@ public class Ability
         this.name = name;
         this.hotkey = hotkey;
         UpdateAbility();
-        /*switch(name){
-            //Mage
-            case "Mage_FlamePool":
-                icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
-                cooldownTime = 10f;
-                break;
-            case "Mage_IceSpike":
-                icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
-                cooldownTime = 3f;
-                break;
-
-            case "Mage_ChainShock":
-                icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
-                cooldownTime = 5f;
-                break;
-            case "Mage_EarthWarden":
-                icon = Resources.Load<Sprite>("Abilities/EarthWarden_500px");
-                cooldownTime = 30f;
-                break;
-            case "Mage_FlowingWater":
-                icon = Resources.Load<Sprite>("Abilities/FlowingWater_500px");
-                cooldownTime = 12f;
-                break;
-            case "Mage_FrozenOrb":
-                icon = Resources.Load<Sprite>("Abilities/FrozenOrb_500px");
-                cooldownTime = 8f;
-                break;
-            case "Mage_WhistlingShield":
-                icon = Resources.Load<Sprite>("Abilities/WhistlingShield_500px");
-                cooldownTime = 15f;
-                break;
-
-
-
-            //No Ability
-            case "NoAbility":
-                icon = Resources.Load<Sprite>("Abilities/Circle");
-                cooldownTime = -1f;
-                break;
-            default:
-                icon = Resources.Load<Sprite>("Abilities/Circle");
-                cooldownTime = -1f;
-                break;
-        }*/
     }
 
 
