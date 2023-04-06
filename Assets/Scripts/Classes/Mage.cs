@@ -61,7 +61,7 @@ public static class Mage
         float FlamePoolDuration = 3f;
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
         GameObject prefab = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/Mage_FlamePool"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
-        GameManager.instance.AddAbilityInSceneTimer(prefab, FlamePoolDuration);
+        GameManager.instance.AddDurationAbility(prefab, FlamePoolDuration);
     }
     static void ChainShock()
     {

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public Dictionary<int, Ability> GM_abilities = new Dictionary<int, Ability>();
     public List<Ability> GM_usable_abilities = new List<Ability>();
-    public Dictionary<GameObject, float> GM_AbilityTimeInScene = new Dictionary<GameObject, float>();
+    public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
     public TextMeshProUGUI debug;
 
     //Player Stats
@@ -90,17 +90,17 @@ public class GameManager : MonoBehaviour
         }
 
         List<GameObject> gameObjectsToClear = new List<GameObject>();
-        List<GameObject> keys = new List<GameObject>(GM_AbilityTimeInScene.Keys);
+        List<GameObject> keys = new List<GameObject>(GM_DurationAbilities.Keys);
         foreach (GameObject prefab in keys){
-            GM_AbilityTimeInScene[prefab] -= Time.deltaTime;
+            GM_DurationAbilities[prefab] -= Time.deltaTime;
             //Debug.Log("Object:" + prefab.name + " Timer: " + timer);
-            if (GM_AbilityTimeInScene[prefab] <= 0){
+            if (GM_DurationAbilities[prefab] <= 0){
                 Destroy(prefab);
                 gameObjectsToClear.Add(prefab);
             }
         }
         foreach (GameObject go in gameObjectsToClear){
-            GM_AbilityTimeInScene.Remove(go);
+            GM_DurationAbilities.Remove(go);
         }
 
         
@@ -122,8 +122,9 @@ public class GameManager : MonoBehaviour
         ability.cooldownTimer = ability.cooldownTime;
     }
 
-    public void AddAbilityInSceneTimer(GameObject prefab, float time){
-        GM_AbilityTimeInScene.Add(prefab, time);
+    //For duration abilities
+    public void AddDurationAbility(GameObject prefab, float time){
+        GM_DurationAbilities.Add(prefab, time);
     }
 
     public void addAbility(string abilityName)

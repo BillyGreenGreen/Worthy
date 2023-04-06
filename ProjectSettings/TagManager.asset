@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 1301557623
+    locked: 0
+  - name: Floor Abilities
+    uniqueID: 3258588589
+    locked: 0
