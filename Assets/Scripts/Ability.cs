@@ -66,6 +66,7 @@ public class Ability
         }*/
     }
 
+
     public void UpdateAbility(){
         //use to update icons when ability is changed on hotbar
         switch(this.name){

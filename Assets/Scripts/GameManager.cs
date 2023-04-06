@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public Dictionary<int, Ability> GM_abilities = new Dictionary<int, Ability>();
     public List<Ability> GM_usable_abilities = new List<Ability>();
+    public Dictionary<GameObject, float> GM_AbilityTimeInScene = new Dictionary<GameObject, float>();
     public TextMeshProUGUI debug;
 
     //Player Stats
@@ -87,6 +88,24 @@ public class GameManager : MonoBehaviour
                 
             }
         }
+        int index = 0;
+        List<GameObject> gameObjectsToClear = new List<GameObject>();
+        List<GameObject> keys = new List<GameObject>(GM_AbilityTimeInScene.Keys);
+        foreach (GameObject prefab in keys){
+            GM_AbilityTimeInScene[prefab] -= Time.deltaTime;
+            //Debug.Log("Object:" + prefab.name + " Timer: " + timer);
+            if (GM_AbilityTimeInScene[prefab] <= 0){
+                Destroy(prefab);
+                gameObjectsToClear.Add(prefab);
+            }
+             
+            index++;
+        }
+        foreach (GameObject go in gameObjectsToClear){
+            GM_AbilityTimeInScene.Remove(go);
+        }
+
+        
     }
 
     void ActivateAbility(Ability ability)
@@ -103,6 +122,10 @@ public class GameManager : MonoBehaviour
     void PutOnCooldown(Ability ability){
         ability.ready = false;
         ability.cooldownTimer = ability.cooldownTime;
+    }
+
+    public void AddAbilityInSceneTimer(GameObject prefab, float time){
+        GM_AbilityTimeInScene.Add(prefab, time);
     }
 
     public void addAbility(string abilityName)
