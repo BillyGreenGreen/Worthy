@@ -33,13 +33,18 @@ public class Enemy : MonoBehaviour
             case "Mage_FlamePool(Clone)":
                 DamageOverTime.instance.ApplyBurn(this, 3);
                 break;
+            case "Mage_FrozenOrb(Clone)":
+                DamageOverTime.instance.ApplyFrost(this, 10);
+                break;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         
         switch(other.transform.name){
-            
+            case "WhistlingShield":
+                DamageOverTime.instance.ApplyFrost(this, 1);
+                break;
         }
     }
 

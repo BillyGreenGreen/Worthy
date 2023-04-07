@@ -8,6 +8,7 @@ public class DamageOverTime : MonoBehaviour
     private Enemy enemyScript;
 
     public List<int> burnTickTimers = new List<int>();
+    public List<int> frostTickTimers = new List<int>();
 
     public static DamageOverTime instance;
 
@@ -26,6 +27,29 @@ public class DamageOverTime : MonoBehaviour
     }
     // Start is called before the first frame update
     private void Start(){
+    }
+
+    public void ApplyFrost(Enemy enemy, int ticks){
+        enemyScript = enemy;
+        if(frostTickTimers.Count <= 0){
+            frostTickTimers.Add(ticks);
+            StartCoroutine(Frost());
+        }
+        else{
+            frostTickTimers.Add(ticks);
+        }
+    }
+
+    IEnumerator Frost(){
+        while(frostTickTimers.Count > 0){
+            for (int i = 0; i < frostTickTimers.Count; i++)
+            {
+                frostTickTimers[i]--;
+            }
+            enemyScript.health -= 2;
+            frostTickTimers.RemoveAll(number => number == 0);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public void ApplyBurn(Enemy enemy, int ticks){

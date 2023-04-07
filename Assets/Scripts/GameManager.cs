@@ -126,17 +126,4 @@ public class GameManager : MonoBehaviour
     public void AddDurationAbility(GameObject prefab, float time){
         GM_DurationAbilities.Add(prefab, time);
     }
-
-    public void addAbility(string abilityName)
-    {
-        //this will be where we change the certain ability when we implement it
-        //GM_abilities.Add(abilityName);
-        string abilitiesFormatted = "";
-
-        for (int i = 0; i < GM_abilities.Count; i++)
-        {
-            abilitiesFormatted += GM_abilities[i] + "\n";
-        }
-        debug.text = "Ability Debug:\n" + abilitiesFormatted;
-    }
 }
