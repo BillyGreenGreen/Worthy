@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class DamageOverTime : MonoBehaviour
+public class FlamePoolDOT : MonoBehaviour
 {
-    private Enemy enemyScript;
 
     public List<int> burnTickTimers = new List<int>();
 
     private int ticks;
     private int damagePerTick;
     private float timeBetweenTicks;
-    public string damageType;
 
 
     // Start is called before the first frame update
@@ -20,15 +17,10 @@ public class DamageOverTime : MonoBehaviour
         ApplyBurn();
     }
 
-    private void Update() {
-        
-    }
-
-    public void UpdateDOTInfo(int ticks, int damagePerTick, float timeBetweenTicks, string damageType){
+    public void UpdateDOTInfo(int ticks, int damagePerTick, float timeBetweenTicks){
         this.ticks = ticks;
         this.damagePerTick = damagePerTick;
         this.timeBetweenTicks = timeBetweenTicks;
-        this.damageType = damageType;
     }
 
     public void ApplyBurn(){

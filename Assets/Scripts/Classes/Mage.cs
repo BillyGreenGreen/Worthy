@@ -58,7 +58,7 @@ public static class Mage
     {
         Debug.Log("FLAME POOL IN MAGE CLASS ACTIVATED");
 
-        float FlamePoolDuration = 3f;
+        float FlamePoolDuration = 7f;
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
         GameObject prefab = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/Mage_FlamePool"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
         GameManager.instance.AddDurationAbility(prefab, FlamePoolDuration);
