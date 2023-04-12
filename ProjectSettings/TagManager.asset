@@ -6,6 +6,7 @@ TagManager:
   tags:
   - debug
   - AbilityGrid
+  - Enemy
   layers:
   - Default
   - TransparentFX

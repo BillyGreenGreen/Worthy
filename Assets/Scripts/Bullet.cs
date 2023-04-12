@@ -16,13 +16,9 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
+
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
         
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

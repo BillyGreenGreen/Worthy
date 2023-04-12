@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public static class Mage
 {
+    
     //The two classes are Elementalist and Battle Mage
 
 
@@ -52,7 +53,7 @@ public static class Mage
     static void IceSpike()
     {
         Debug.Log("ICE SPIKE IN MAGE CLASS ACTIVATED");
-        //GameObject projectile = Instantiate(IceSpikePrefab, shootingPoint.transform.position, Quaternion.identity);
+        ProjectileShooter.instance.otherPrefab = (GameObject)Resources.Load("Prefabs/MageAbilities/Mage_IceSpike");
     }
     static void FlamePool()//DONE-ish doesnt work for multiple enemies, its because of the tick timers, needs to be different, maybe store in a dictionary for different abilities or enemies
     {
@@ -66,6 +67,7 @@ public static class Mage
     static void ChainShock()
     {
         Debug.Log("CHAIN SHOCK IN MAGE CLASS ACTIVATED");
+        ProjectileShooter.instance.otherPrefab = (GameObject)Resources.Load("Prefabs/MageAbilities/Mage_ChainShockProjectile");
         //Will hit an enemy, deal damage and check if there are other enemmies around it, if so it will send a function with a number of how many previous enemies it has hit
     }
     static void EarthWarden()//DONE
