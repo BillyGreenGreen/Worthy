@@ -1,0 +1,9 @@
+Add enemy movement
+Add Earth Warden (Taunt ability that is a totem and taunts and area around it)
+Add Golden God
+Add otyher ability
+Add Hole In The Wall upgrades (morphs), have to do this here because abilities might be fucked by it
+Add elite enemies which mmay just be normmal enimies but better health so wont be too mmuch
+Add all rooms (maybe design the rooms), including spawners and waves when necessary (check trello for wave rooms)
+Add two different bosses for now
+Give to everyone to test
