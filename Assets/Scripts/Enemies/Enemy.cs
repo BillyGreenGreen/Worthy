@@ -37,8 +37,8 @@ public class Enemy : MonoBehaviour
         else if(chainShockTimer <= 0){
             hitByChainShock = false;
             if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") != null){
-            Transform remove = debuffIcons.transform.Find("ChainShockDebuff(Clone)");
-            remove.parent = null;
+                Transform remove = debuffIcons.transform.Find("ChainShockDebuff(Clone)");
+                Destroy(remove.gameObject);
             }
         }
         healthText.text = health.ToString();
@@ -84,8 +84,7 @@ public class Enemy : MonoBehaviour
                 break;
             case "Mage_ChainShockProjectile(Clone)":
                 hitByChainShock = true;
-                
-                HitByChainShock(3);
+                HitByChainShock(4); //parameter is how many enemies can be hit by chain shock, will be changed with a GM_***** variable
                 Destroy(other.gameObject);
                 break;
         }
@@ -94,8 +93,11 @@ public class Enemy : MonoBehaviour
     //Sort of works, deletes other object, what we could do if send another projectile towards the other object because thats what it will do in the end
     public void HitByChainShock(int numberOfHitsLeft){
         if (hitByChainShock && numberOfHitsLeft > 0){
-            GameObject icon = Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/ChainShockDebuff"), new Vector3(0,0,0), Quaternion.identity);
-            icon.transform.SetParent(debuffIcons.transform);
+            if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") == null){
+                GameObject icon = Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/ChainShockDebuff"), new Vector3(0,0,0), Quaternion.identity);
+                icon.transform.SetParent(debuffIcons.transform);
+                //chainShockTimer = 10f; chain shock timer reset here if we dont want it to refresh afer being shot again, ask opinions
+            }
             chainShockTimer = 10f;
             health -= 20;
             int count = numberOfHitsLeft;
