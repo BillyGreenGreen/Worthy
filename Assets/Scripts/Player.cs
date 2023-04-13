@@ -65,15 +65,29 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
-        //TODO: switch case for all damaging abilities to the player
+    void TakeDamage(int damage){
         if (shieldAmount > 0){
-            shieldAmount -= 10;
+            shieldAmount -= damage;
         }
         else{
-            health -= 10;
+            health -= damage;
         }
-        
-        Debug.Log(col.transform.name);
+    }
+
+    //colliding with other game objects that have physics
+    private void OnCollisionEnter2D(Collision2D other) {
+        switch(other.transform.tag){
+            case "Enemy":
+                TakeDamage(10);
+                break;
+    }
+
+    void OnTriggerEnter2D(Collider2D col) {
+        //TODO: switch case for all damaging abilities to the player
+        /*switch(col.name){
+            case "AbilityNameHere":
+                TakeDamage(10);
+                break;*/
+        }
     }
 }

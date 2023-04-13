@@ -8,13 +8,20 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
 
+    [Header("Health")]
     public int health = 300;
     public TextMeshProUGUI healthText;
+
     float timeColliding; //this will have to change with multiple duration abilities
+    
+    [Header("Mage Abilities")]
     public Collider2D chainShockRadiusCheck;
     bool inFlamePool = false;
     public bool hitByChainShock = false;
     public float chainShockTimer = 0f;
+
+    [Header("Debuffs")]
+    public GameObject debuffIcons;
     List<GameObject> otherEnemies;
 
     private void Start() {
@@ -29,6 +36,10 @@ public class Enemy : MonoBehaviour
         }
         else if(chainShockTimer <= 0){
             hitByChainShock = false;
+            if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") != null){
+            Transform remove = debuffIcons.transform.Find("ChainShockDebuff(Clone)");
+            remove.parent = null;
+            }
         }
         healthText.text = health.ToString();
         if (health < 1){
@@ -73,15 +84,31 @@ public class Enemy : MonoBehaviour
                 break;
             case "Mage_ChainShockProjectile(Clone)":
                 hitByChainShock = true;
-                HitByChainShock();
+                
+                HitByChainShock(3);
                 Destroy(other.gameObject);
                 break;
         }
     }
 
     //Sort of works, deletes other object, what we could do if send another projectile towards the other object because thats what it will do in the end
-    public void HitByChainShock(){
-        if (hitByChainShock){
+    public void HitByChainShock(int numberOfHitsLeft){
+        if (hitByChainShock && numberOfHitsLeft > 0){
+            GameObject icon = Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/ChainShockDebuff"), new Vector3(0,0,0), Quaternion.identity);
+            icon.transform.SetParent(debuffIcons.transform);
+            chainShockTimer = 10f;
+            health -= 20;
+            int count = numberOfHitsLeft;
+            foreach(GameObject otherEnemy in chainShockRadiusCheck.GetComponent<ChainShockRadiusChecker>().otherEnemies){
+                if (!otherEnemy.GetComponent<Enemy>().hitByChainShock){
+                    otherEnemy.GetComponent<Enemy>().hitByChainShock = true;
+                    count--;
+                    otherEnemy.GetComponent<Enemy>().HitByChainShock(count);
+                }
+                
+            }
+
+            /*
             otherEnemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
             GameObject closestEnemy = null;
             otherEnemies.Remove(gameObject);
@@ -106,7 +133,7 @@ public class Enemy : MonoBehaviour
             }
             else{
                 Debug.Log("NO ENEMIES CLOSE ENOUGH");
-            }
+            }*/
             
         }
     }

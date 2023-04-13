@@ -15,8 +15,8 @@ public class DamageOverTime : MonoBehaviour
     public string damageType;
 
 
-    // Start is called before the first frame update
-    private void Start(){
+
+    private void Awake() {
         ApplyBurn();
     }
 
@@ -47,7 +47,9 @@ public class DamageOverTime : MonoBehaviour
             {
                 burnTickTimers[i]--;
             }
+            if (gameObject.GetComponent<Enemy>() != null){
             gameObject.GetComponent<Enemy>().health -= damagePerTick;
+            }
             burnTickTimers.RemoveAll(number => number == 0);
             yield return new WaitForSeconds(timeBetweenTicks);
         }
