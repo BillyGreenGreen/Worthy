@@ -171,6 +171,9 @@ public class Enemy : MonoBehaviour
             case "WhistlingShield":
                 gameObject.GetComponent<WhistlingShieldDOT>().Destroy();
                 break;
+            case "Mage_FrozenOrb(Clone)":
+                gameObject.GetComponent<FrozenOrbDOT>().Destroy();
+                break;
         }
     }
 
