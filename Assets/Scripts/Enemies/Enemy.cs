@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //Sort of works, deletes other object, what we could do if send another projectile towards the other object because thats what it will do in the end
+    
     public void HitByChainShock(int numberOfHitsLeft){
         if (hitByChainShock && numberOfHitsLeft > 0){
             if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") == null){
