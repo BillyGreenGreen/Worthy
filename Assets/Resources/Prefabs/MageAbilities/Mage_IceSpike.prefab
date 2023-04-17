@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1380231393171632767}
   - component: {fileID: 8256896378569491011}
   - component: {fileID: -3919163356765161891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage_IceSpike
   m_TagString: Untagged
   m_Icon: {fileID: 0}

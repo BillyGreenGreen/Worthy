@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2746929351769189490}
   - component: {fileID: -1861530709467091021}
   - component: {fileID: 531941963725297516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage_ChainShockProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
