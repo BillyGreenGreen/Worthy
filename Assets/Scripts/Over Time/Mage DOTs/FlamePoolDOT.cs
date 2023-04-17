@@ -33,6 +33,10 @@ public class FlamePoolDOT : MonoBehaviour
         }
     }
 
+    public void Destroy(){
+        Destroy(this);
+    }
+
     IEnumerator Damage(){
         while(burnTickTimers.Count > 0){
             for (int i = 0; i < burnTickTimers.Count; i++)

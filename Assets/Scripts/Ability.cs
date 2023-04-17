@@ -9,6 +9,7 @@ public class Ability
     public string name;
     public KeyCode hotkey;
     public float cooldownTime;
+    public float cooldownTimer;
     public int charges;
     public Sprite icon;
     public bool ready = true;
