@@ -53,7 +53,7 @@ public static class Mage
     static void IceSpike()
     {
         Debug.Log("ICE SPIKE IN MAGE CLASS ACTIVATED");
-        ProjectileShooter.instance.otherPrefab = (GameObject)Resources.Load("Prefabs/MageAbilities/Mage_IceSpike");
+        ProjectileShooter.instance.otherPrefab = Resources.Load<GameObject>("Prefabs/MageAbilities/Mage_IceSpike");
     }
     static void FlamePool()//DONE-ish doesnt work for multiple enemies, its because of the tick timers, needs to be different, maybe store in a dictionary for different abilities or enemies
     {
@@ -61,19 +61,22 @@ public static class Mage
 
         float FlamePoolDuration = 7f;
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
-        GameObject prefab = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/Mage_FlamePool"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
+        GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Mage_FlamePool"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
         GameManager.instance.AddDurationAbility(prefab, FlamePoolDuration);
     }
     static void ChainShock()
     {
         Debug.Log("CHAIN SHOCK IN MAGE CLASS ACTIVATED");
-        ProjectileShooter.instance.otherPrefab = (GameObject)Resources.Load("Prefabs/MageAbilities/Mage_ChainShockProjectile");
+        ProjectileShooter.instance.otherPrefab = Resources.Load<GameObject>("Prefabs/MageAbilities/Mage_ChainShockProjectile");
         //Will hit an enemy, deal damage and check if there are other enemmies around it, if so it will send a function with a number of how many previous enemies it has hit
     }
     static void EarthWarden()//DONE
     {
+        float EarthWardenDuration = 15f;
         Debug.Log("EARTH WARDEN IN MAGE CLASS ACTIVATED");
-        GameObject.Find("Player").GetComponent<Player>().AddShield(75, "EarthWarden");
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
+        GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Mage_EarthWardenArea"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
+        GameManager.instance.AddDurationAbility(prefab, EarthWardenDuration);
     }
     static void FlowingWater()//DONE
     {
@@ -83,7 +86,7 @@ public static class Mage
     {
         float FrozenOrbDuration = 5f;
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1);
-        GameObject prefab = GameObject.Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/Mage_FrozenOrb"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
+        GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Mage_FrozenOrb"), Camera.main.ScreenToWorldPoint(mousePos), Quaternion.identity);
         GameManager.instance.AddDurationAbility(prefab, FrozenOrbDuration);
     }
     
