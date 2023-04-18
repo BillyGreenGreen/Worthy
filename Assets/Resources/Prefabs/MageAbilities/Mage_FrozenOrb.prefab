@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4699583808454744671}
   - component: {fileID: 207683265644260561}
   - component: {fileID: 3627098509832908846}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrozenOrbRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}

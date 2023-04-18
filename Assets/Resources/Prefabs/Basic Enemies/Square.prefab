@@ -160,6 +160,8 @@ MonoBehaviour:
   hitByChainShock: 0
   chainShockTimer: 0
   debuffIcons: {fileID: 552000106393655158}
+  flamePoolDebuffRemove: 0
+  frozenOrbDebuffRemove: 0
 --- !u!222 &191266372616211349
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -387,7 +389,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &191266373689111097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,7 +465,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 0.5, y: 0.5}
+  m_CellSize: {x: 0.38, y: 0.5}
   m_Spacing: {x: 0.1, y: 0.1}
   m_Constraint: 0
   m_ConstraintCount: 2

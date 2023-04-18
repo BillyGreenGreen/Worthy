@@ -7,5 +7,6 @@ public class DestroyOnCollision : MonoBehaviour
         // destroy the projectile when it collides with any object
         Destroy(gameObject);
     }
+    
 }
 

@@ -32,7 +32,11 @@ public class FrozenOrbDOT : MonoBehaviour
         }
     }
 
-    public void Destroy(){
+    public void DestroyDOT(){
+        if (gameObject.GetComponent<Enemy>().frozenOrbDebuffRemove){
+            Transform remove = gameObject.GetComponent<Enemy>().debuffIcons.transform.Find("FrozenOrbDebuff(Clone)");
+            Destroy(remove.gameObject);
+        } 
         Destroy(this);
     }
 

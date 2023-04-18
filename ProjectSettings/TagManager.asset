@@ -8,6 +8,7 @@ TagManager:
   - AbilityGrid
   - Enemy
   - ChainShockCleanup
+  - OuterWall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - ChainShockCollider
   - Enemy
   - Projectile
-  - 
+  - FrozenOrbRing
   - 
   - 
   - 

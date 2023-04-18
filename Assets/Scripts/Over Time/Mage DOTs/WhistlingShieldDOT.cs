@@ -32,7 +32,7 @@ public class WhistlingShieldDOT : MonoBehaviour
         }
     }
 
-    public void Destroy(){
+    public void DestroyDOT(){
         Destroy(this);
     }
 

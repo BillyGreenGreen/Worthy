@@ -33,7 +33,7 @@ public class FlamePoolDOT : MonoBehaviour
         }
     }
 
-    public void Destroy(){
+    public void DestroyDOT(){
         Destroy(this);
     }
 
@@ -46,6 +46,12 @@ public class FlamePoolDOT : MonoBehaviour
             gameObject.GetComponent<Enemy>().health -= damagePerTick;
             burnTickTimers.RemoveAll(number => number == 0);
             yield return new WaitForSeconds(timeBetweenTicks);
+        }
+        if (gameObject.GetComponent<Enemy>().debuffIcons.transform.Find("FlamePoolDebuff(Clone)") != null){
+            if (gameObject.GetComponent<Enemy>().flamePoolDebuffRemove){
+                Transform remove = gameObject.GetComponent<Enemy>().debuffIcons.transform.Find("FlamePoolDebuff(Clone)");
+                Destroy(remove.gameObject);
+            }  
         }
         Destroy(this);
     }

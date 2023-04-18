@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     [Header("Debuffs")]
     public GameObject debuffIcons;
     List<GameObject> otherEnemies;
+    public bool flamePoolDebuffRemove = false;
+    public bool frozenOrbDebuffRemove = false;
 
     private void Start() {
     }
@@ -65,10 +67,20 @@ public class Enemy : MonoBehaviour
         Debug.Log("COLLIDE :" + other.transform.name);
         switch(other.transform.name){
             case "Mage_FlamePool(Clone)":
+                if (debuffIcons.transform.Find("FlamePoolDebuff(Clone)") == null){
+                    GameObject icon = Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Debuffs/FlamePoolDebuff"), new Vector3(0,0,0), Quaternion.identity);
+                    icon.transform.SetParent(debuffIcons.transform);
+                    flamePoolDebuffRemove = false;
+                }
                 FlamePoolDOT flamePoolDOT = gameObject.AddComponent<FlamePoolDOT>();
                 flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
                 break;
-            case "Mage_FrozenOrb(Clone)":
+            case "FrozenOrbRing":
+                if (debuffIcons.transform.Find("FrozenOrbDebuff(Clone)") == null){
+                    GameObject icon = Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Debuffs/FrozenOrbDebuff"), new Vector3(0,0,0), Quaternion.identity);
+                    icon.transform.SetParent(debuffIcons.transform);
+                    frozenOrbDebuffRemove = false;
+                }
                 FrozenOrbDOT frozenOrbDOT = gameObject.AddComponent<FrozenOrbDOT>();
                 frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
                 break;
@@ -90,69 +102,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    
-    public void HitByChainShock(int numberOfHitsLeft){
-        if (hitByChainShock && numberOfHitsLeft > 0){
-            if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") == null){
-                GameObject icon = Instantiate((GameObject)Resources.Load("Prefabs/MageAbilities/ChainShockDebuff"), new Vector3(0,0,0), Quaternion.identity);
-                icon.transform.SetParent(debuffIcons.transform);
-                //chainShockTimer = 10f; chain shock timer reset here if we dont want it to refresh afer being shot again, ask opinions
-            }
-            chainShockTimer = 10f;
-            health -= 20;
-            int count = numberOfHitsLeft;
-            foreach(GameObject otherEnemy in chainShockRadiusCheck.GetComponent<ChainShockRadiusChecker>().otherEnemies){
-                if (!otherEnemy.GetComponent<Enemy>().hitByChainShock){
-                    otherEnemy.GetComponent<Enemy>().hitByChainShock = true;
-                    count--;
-                    otherEnemy.GetComponent<Enemy>().HitByChainShock(count);
-                }
-                
-            }
-
-            /*
-            otherEnemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
-            GameObject closestEnemy = null;
-            otherEnemies.Remove(gameObject);
-            foreach (GameObject enemy in otherEnemies){
-                if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) < 10){
-                    if (closestEnemy != null){
-                        if (!closestEnemy.GetComponent<Enemy>().hitByChainShock && Vector3.Distance(gameObject.transform.position, enemy.transform.position) < Vector3.Distance(gameObject.transform.position, closestEnemy.transform.position)){
-                            closestEnemy = enemy;
-                        }
-                    }
-                    else{
-                        closestEnemy = enemy;
-                    }
-                }
-            }
-            health -= 20;
-            chainShockTimer = 10f;
-            if (closestEnemy != null){
-                //Debug.Log(closestEnemy.name);
-                closestEnemy.GetComponent<Enemy>().hitByChainShock = true;
-                closestEnemy.GetComponent<Enemy>().HitByChainShock();
-            }
-            else{
-                Debug.Log("NO ENEMIES CLOSE ENOUGH");
-            }*/
-            
-        }
-    }
-    
-
     private void OnTriggerStay2D(Collider2D other) {
         
         switch(other.transform.name){
             
             case "Mage_FlamePool(Clone)":
                 if (gameObject.GetComponent<FlamePoolDOT>() == null){
+                    flamePoolDebuffRemove = false;
                     FlamePoolDOT flamePoolDOT = gameObject.AddComponent<FlamePoolDOT>();
                     flamePoolDOT.UpdateDOTInfo(3, 10, 1);
                 }
                 break;
-            case "Mage_FrozenOrb(Clone)":
+            case "FrozenOrbRing":
                 if (gameObject.GetComponent<FrozenOrbDOT>() == null){
+                    frozenOrbDebuffRemove = false;
                     FrozenOrbDOT frozenOrbDOT = gameObject.AddComponent<FrozenOrbDOT>();
                     frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
                 }
@@ -168,17 +131,41 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         switch(other.transform.name){
-            case "WhistlingShield":
-                gameObject.GetComponent<WhistlingShieldDOT>().Destroy();
+            case "Mage_FlamePool(Clone)":
+                flamePoolDebuffRemove = true;
                 break;
-            case "Mage_FrozenOrb(Clone)":
-                gameObject.GetComponent<FrozenOrbDOT>().Destroy();
+            case "WhistlingShield":
+                gameObject.GetComponent<WhistlingShieldDOT>().DestroyDOT();
+                break;
+            case "FrozenOrbRing":
+                frozenOrbDebuffRemove = true;
+                gameObject.GetComponent<FrozenOrbDOT>().DestroyDOT();
                 break;
         }
     }
 
     private void OnCollisionStay2D(Collision2D other) {
         
+    }
+
+    public void HitByChainShock(int numberOfHitsLeft){
+        if (hitByChainShock && numberOfHitsLeft > 0){
+            if (debuffIcons.transform.Find("ChainShockDebuff(Clone)") == null){
+                GameObject icon = Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Debuffs/ChainShockDebuff"), new Vector3(0,0,0), Quaternion.identity);
+                icon.transform.SetParent(debuffIcons.transform);
+                //chainShockTimer = 10f; chain shock timer reset here if we dont want it to refresh afer being shot again, ask opinions
+            }
+            chainShockTimer = 10f;
+            health -= 20;
+            int count = numberOfHitsLeft;
+            foreach(GameObject otherEnemy in chainShockRadiusCheck.GetComponent<ChainShockRadiusChecker>().otherEnemies){
+                if (!otherEnemy.GetComponent<Enemy>().hitByChainShock){
+                    otherEnemy.GetComponent<Enemy>().hitByChainShock = true;
+                    count--;
+                    otherEnemy.GetComponent<Enemy>().HitByChainShock(count);
+                }
+            }
+        }
     }
 
    
