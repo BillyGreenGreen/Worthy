@@ -13,4 +13,10 @@ public class FadeLevelChanger : MonoBehaviour
     public void OnFadeComplete(){
         SceneManager.LoadScene(levelToLoad);
     }
+
+    private void Update() {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("FadeOut")){
+            OnFadeComplete();
+        }
+    }
 }
