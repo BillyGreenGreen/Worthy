@@ -11,12 +11,19 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField]
     public Dictionary<int, Ability> GM_abilities = new Dictionary<int, Ability>();
-    public List<Ability> GM_usable_abilities = new List<Ability>();
+    public List<Ability> GM_usable_abilities = new List<Ability>();//THIS IS USED ONLY FOR TESTING
+
+    public List<Ability> GM_buyable_abilities = new List<Ability>();
+    public List<Ability> GM_bought_abilities = new List<Ability>();
+    public Dictionary<int, Ability> GM_hotbar_abilities = new Dictionary<int, Ability>();
+
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
     public TextMeshProUGUI debug;
 
     //Player Stats
     public string GM_class_selected;
+
+    public int GM_currency;
 
     private void Awake()
     {
@@ -33,6 +40,15 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start(){
+        GM_class_selected = "Elementalist";//TESTING ONLY
+
+        if (!PlayerPrefs.HasKey("Currency")){
+            //PlayerPrefs.SetInt("Currency", 0);
+            //GM_currency = 0;
+        }
+        else{
+            //GM_currency = PlayerPrefs.GetInt("Currency");
+        }
 
         //abilities added for testing, will have switch case to add all usable abilities here.
         //these will be used and updated when using the shop feature
@@ -55,7 +71,7 @@ public class GameManager : MonoBehaviour
         {
             abilitiesFormatted += GM_abilities[i].hotkey + "\n";
         }
-        debug.text = "Ability Debug:\n" + abilitiesFormatted;
+        //debug.text = "Ability Debug:\n" + abilitiesFormatted;
 
 
 
@@ -104,6 +120,27 @@ public class GameManager : MonoBehaviour
         }
 
         
+    }
+
+    public void LoadClassAbilities(){
+        //validation on whether or not its first time playing
+        switch(GM_class_selected){
+            case "Elementalist":
+                GM_buyable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_ChainShock", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_EarthWarden", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_FlowingWater", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_FrozenOrb", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_WhistlingShield", KeyCode.None));
+
+                GM_bought_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
+
+                GM_hotbar_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1"))));
+                GM_hotbar_abilities.Add(2, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2"))));
+                GM_hotbar_abilities.Add(3, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability3"))));
+                GM_hotbar_abilities.Add(4, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability4"))));
+                break;
+        }
     }
 
     void ActivateAbility(Ability ability)

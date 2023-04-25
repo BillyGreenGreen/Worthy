@@ -12,6 +12,7 @@ public class Ability
     public float cooldownTimer;
     public int charges;
     public Sprite icon;
+    public int baseCost;
     public bool ready = true;
     
     //implement all above
@@ -30,31 +31,38 @@ public class Ability
             case "Mage_FlamePool":
                 icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
                 cooldownTime = 10f;
+                baseCost = 200;
                 break;
             case "Mage_IceSpike":
                 icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
                 cooldownTime = 3f;
+                baseCost = 100;
                 break;
 
             case "Mage_ChainShock":
                 icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
                 cooldownTime = 5f;
+                baseCost = 300;
                 break;
             case "Mage_EarthWarden":
                 icon = Resources.Load<Sprite>("Abilities/EarthWarden_500px");
                 cooldownTime = 30f;
+                baseCost = 500;
                 break;
             case "Mage_FlowingWater":
                 icon = Resources.Load<Sprite>("Abilities/FlowingWater_500px");
                 cooldownTime = 12f;
+                baseCost = 100;
                 break;
             case "Mage_FrozenOrb":
                 icon = Resources.Load<Sprite>("Abilities/FrozenOrb_500px");
                 cooldownTime = 8f;
+                baseCost = 200;
                 break;
             case "Mage_WhistlingShield":
                 icon = Resources.Load<Sprite>("Abilities/WhistlingShield_500px");
                 cooldownTime = 15f;
+                baseCost = 150;
                 break;
 
 
