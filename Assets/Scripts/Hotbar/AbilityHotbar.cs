@@ -28,10 +28,12 @@ public class AbilityHotbar : MonoBehaviour
     void Start(){
 
         //these abilities should be where they also go on the hotbar aswell as populating the popup menu
-        availiableAbilities = GameManager.instance.GM_abilities;
+        //availiableAbilities = GameManager.instance.GM_abilities;
+        availiableAbilities = GameManager.instance.GM_hotbar_abilities;
 
         int count = 0;
         foreach (Ability ability in availiableAbilities.Values){
+            Debug.Log(ability.hotkey.ToString());
             if (ability.hotkey.ToString() == "Space"){
                 keybinds[count].text = "Spc";
             }
@@ -45,7 +47,7 @@ public class AbilityHotbar : MonoBehaviour
 
     void Update(){
         int count = 0;
-        foreach (Ability ability in GameManager.instance.GM_abilities.Values){ 
+        foreach (Ability ability in GameManager.instance.GM_hotbar_abilities.Values){ 
             if (!ability.ready){
                 cooldownNumbers[count].text = Math.Floor(ability.cooldownTimer).ToString();
                 cooldownRadialOverlays[count].fillAmount = Mathf.Clamp01(ability.cooldownTimer / ability.cooldownTime);

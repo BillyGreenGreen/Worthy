@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
         //abilities added for testing, will have switch case to add all usable abilities here.
         //these will be used and updated when using the shop feature
+
+        /*
         GM_usable_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
         GM_usable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
         GM_usable_abilities.Add(new Ability("Mage_ChainShock", KeyCode.None));
@@ -63,7 +65,7 @@ public class GameManager : MonoBehaviour
         GM_abilities.Add(1, new Ability("Mage_FlamePool", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability1"))));
         GM_abilities.Add(2, new Ability("Mage_IceSpike", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability2"))));
         GM_abilities.Add(3, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability3"))));
-        GM_abilities.Add(4, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability4"))));
+        GM_abilities.Add(4, new Ability("NoAbility", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ability4"))));*/
 
         string abilitiesFormatted = "";
 
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        foreach (Ability ability in GM_abilities.Values)
+        foreach (Ability ability in GM_hotbar_abilities.Values)
         {
             if (!ability.ready)
             {

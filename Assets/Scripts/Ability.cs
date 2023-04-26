@@ -29,38 +29,38 @@ public class Ability
         switch(this.name){
             //Mage
             case "Mage_FlamePool":
-                icon = Resources.Load<Sprite>("Abilities/FlamePool_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_FlamePool_500px");
                 cooldownTime = 10f;
                 baseCost = 200;
                 break;
             case "Mage_IceSpike":
-                icon = Resources.Load<Sprite>("Abilities/IceSpike_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_IceSpike_500px");
                 cooldownTime = 3f;
                 baseCost = 100;
                 break;
 
             case "Mage_ChainShock":
-                icon = Resources.Load<Sprite>("Abilities/ChainShock_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_ChainShock_500px");
                 cooldownTime = 5f;
                 baseCost = 300;
                 break;
             case "Mage_EarthWarden":
-                icon = Resources.Load<Sprite>("Abilities/EarthWarden_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_EarthWarden_500px");
                 cooldownTime = 30f;
                 baseCost = 500;
                 break;
             case "Mage_FlowingWater":
-                icon = Resources.Load<Sprite>("Abilities/FlowingWater_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_FlowingWater_500px");
                 cooldownTime = 12f;
                 baseCost = 100;
                 break;
             case "Mage_FrozenOrb":
-                icon = Resources.Load<Sprite>("Abilities/FrozenOrb_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_FrozenOrb_500px");
                 cooldownTime = 8f;
                 baseCost = 200;
                 break;
             case "Mage_WhistlingShield":
-                icon = Resources.Load<Sprite>("Abilities/WhistlingShield_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_WhistlingShield_500px");
                 cooldownTime = 15f;
                 baseCost = 150;
                 break;

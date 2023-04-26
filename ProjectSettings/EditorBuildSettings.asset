@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MageMap.unity
     guid: c0d81a269be30b84a9e78bf35a3f8fc6
+  - enabled: 1
+    path: Assets/Scenes/HoleInTheWall.unity
+    guid: 8aafa7ae80eb72c4683b8bfce6960917
   m_configObjects: {}
