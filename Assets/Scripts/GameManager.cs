@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
     public TextMeshProUGUI debug;
+    public bool canDropAbilityInInventory;
 
     //Player Stats
     public string GM_class_selected;

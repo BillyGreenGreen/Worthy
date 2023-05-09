@@ -68,11 +68,11 @@ public class Ability
 
             //NoAbility
             case "NoAbility":
-                icon = Resources.Load<Sprite>("Abilities/Circle");
+                icon = Resources.Load<Sprite>("Abilities/circle");
                 cooldownTime = -1f;
                 break;
             default:
-                icon = Resources.Load<Sprite>("Abilities/Circle");
+                icon = Resources.Load<Sprite>("Abilities/circle");
                 cooldownTime = -1f;
                 break;
         }
