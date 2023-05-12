@@ -53,6 +53,7 @@ public class HoleInTheWall : MonoBehaviour
                 child.gameObject.GetComponent<Image>().enabled = true;
                 child.gameObject.GetComponent<Image>().sprite = abilityIcon;
                 child.gameObject.name = abilityIcon.name.Substring(0, abilityIcon.name.Length-6);
+                child.gameObject.transform.position = new Vector3(child.gameObject.transform.position.x, child.gameObject.transform.position.y, -1);
                 break;
             }
             Debug.Log(child.gameObject.name);

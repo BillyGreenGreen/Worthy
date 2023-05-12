@@ -10,6 +10,7 @@ TagManager:
   - ChainShockCleanup
   - OuterWall
   - EnemyProjectile
+  - InventoryIcons
   layers:
   - Default
   - TransparentFX
