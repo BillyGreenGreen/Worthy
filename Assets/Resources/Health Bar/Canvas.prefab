@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a7d61b4544e2a4a9be8442a4ad71a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 2848749661451760353}
+  healthText: {fileID: 0}
 --- !u!1001 &3538017292414843301
 PrefabInstance:
   m_ObjectHideFlags: 0

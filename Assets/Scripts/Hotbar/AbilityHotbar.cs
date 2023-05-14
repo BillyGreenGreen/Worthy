@@ -49,7 +49,7 @@ public class AbilityHotbar : MonoBehaviour
         int count = 0;
         foreach (Ability ability in GameManager.instance.GM_hotbar_abilities.Values){ 
             if (!ability.ready){
-                cooldownNumbers[count].text = Math.Floor(ability.cooldownTimer).ToString();
+                cooldownNumbers[count].text = Math.Floor(ability.cooldownTimer + 1).ToString();
                 cooldownRadialOverlays[count].fillAmount = Mathf.Clamp01(ability.cooldownTimer / ability.cooldownTime);
             }
             else{

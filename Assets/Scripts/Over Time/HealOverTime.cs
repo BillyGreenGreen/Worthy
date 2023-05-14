@@ -47,6 +47,7 @@ public class HealOverTime : MonoBehaviour
             }
             if (playerScript.health < 100){
                 playerScript.health += 5;
+                //playerScript.healthBar.AddHealth(5);
             }
             
             healTickTimers.RemoveAll(number => number == 0);

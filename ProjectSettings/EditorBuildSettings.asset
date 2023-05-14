@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HoleInTheWall.unity
     guid: 8aafa7ae80eb72c4683b8bfce6960917
+  - enabled: 1
+    path: Assets/Scenes/UICHANGE.unity
+    guid: becf5661038b25f479dce9dfe0ecdf39
   m_configObjects: {}

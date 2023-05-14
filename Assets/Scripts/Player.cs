@@ -5,6 +5,8 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public HealthBarPlayer healthBar;
+    public int maxHealth = 100;
     public int health = 100;
     public int shieldAmount;
 
@@ -20,28 +22,28 @@ public class Player : MonoBehaviour
             }
             else{
                 timers.Remove(timer);
-                if (timer == "EarthWarden"){
-                    shieldAmount -= 75;
-                }
                 if (timer == "WhistlingShield"){
                     shieldAmount -= 45;
                     GameObject player = GameObject.Find("Player");
                     Transform shield = player.transform.Find("WhistlingShield");
                     shield.GetComponent<SpriteRenderer>().enabled = false;
                     shield.GetComponent<CircleCollider2D>().enabled = false;
-
+                    healthBar.SetShield(0);
                 }
             }
         }
 
         if (shieldAmount > 0){
             healthText.text = health.ToString() + " (" + shieldAmount +")";
+            healthBar.SetShield(shieldAmount);
         }
         else{
             healthText.text = health.ToString();
+            healthBar.SetHealth(health);
         }
         if (shieldAmount < 0){
             shieldAmount = 0;
+            healthBar.SetShield(0);
         }
         if (health <= 0){
             Die();
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
 
     public void AddShield(int amount, string abilityName){
         shieldAmount += amount;
+        //healthBar.AddShield(amount);
         
         if (abilityName == "EarthWarden"){
             timers.Add(abilityName, 10);
@@ -68,9 +71,11 @@ public class Player : MonoBehaviour
     void TakeDamage(int damage){
         if (shieldAmount > 0){
             shieldAmount -= damage;
+            //healthBar.RemoveShield(damage);
         }
         else{
             health -= damage;
+            //healthBar.RemoveHealth(damage);
         }
     }
 
