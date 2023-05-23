@@ -1,24 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f; // The speed of the player
     private Rigidbody2D rb; // The Rigidbody2D component attached to the player
+    float horizontalInput;
+    float verticalInput;
+    public InputAction playerMovement;
 
+    Vector2 movement = Vector2.zero;
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component on Start
+        horizontalInput = 0;
+        verticalInput = 0;
+        playerMovement.ApplyBindingOverride(new InputBinding{
+            path= "<Keyboard>/w",
+            overridePath = "<Keyboard>/" + PlayerPrefs.GetString("MoveUp")
+        });
+        playerMovement.ApplyBindingOverride(new InputBinding{
+            path= "<Keyboard>/s",
+            overridePath = "<Keyboard>/" + PlayerPrefs.GetString("MoveDown")
+        });
+        playerMovement.ApplyBindingOverride(new InputBinding{
+            path= "<Keyboard>/a",
+            overridePath = "<Keyboard>/" + PlayerPrefs.GetString("MoveLeft")
+        });
+        playerMovement.ApplyBindingOverride(new InputBinding{
+            path= "<Keyboard>/d",
+            overridePath = "<Keyboard>/" + PlayerPrefs.GetString("MoveRight")
+        });
+    }
+
+    private void OnEnable() {
+        playerMovement.Enable();
+    }
+
+    private void OnDisable() {
+        playerMovement.Disable();
     }
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal"); // Get the horizontal input from the user
-        float verticalInput = Input.GetAxis("Vertical"); // Get the vertical input from the user
+        movement = playerMovement.ReadValue<Vector2>();
+    }
 
-        Vector2 movement = new Vector2(horizontalInput, verticalInput); // Create a Vector2 to store the movement input
-
-        rb.velocity = movement * speed; // Set the velocity of the Rigidbody2D to the movement input multiplied by the speed
+    private void FixedUpdate() {
+        rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
     }
 }

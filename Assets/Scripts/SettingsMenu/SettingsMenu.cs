@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -26,6 +27,26 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("ability4"))
         {
             keybindsGUI[3].text = PlayerPrefs.GetString("ability4");
+        }
+        if (PlayerPrefs.HasKey("dash"))
+        {
+            keybindsGUI[4].text = PlayerPrefs.GetString("dash");
+        }
+        if (PlayerPrefs.HasKey("MoveUp"))
+        {
+            keybindsGUI[5].text = PlayerPrefs.GetString("MoveUp");
+        }
+        if (PlayerPrefs.HasKey("MoveDown"))
+        {
+            keybindsGUI[6].text = PlayerPrefs.GetString("MoveDown");
+        }
+        if (PlayerPrefs.HasKey("MoveRight"))
+        {
+            keybindsGUI[7].text = PlayerPrefs.GetString("MoveRight");
+        }
+        if (PlayerPrefs.HasKey("MoveLeft"))
+        {
+            keybindsGUI[8].text = PlayerPrefs.GetString("MoveLeft");
         }
     }
 
@@ -70,7 +91,43 @@ public class SettingsMenu : MonoBehaviour
                     currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 }
 
+                else if (currentKey.transform.name == "Dash")
+                {
+                    PlayerPrefs.SetString("dash", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                }
+
+                else if (currentKey.transform.name == "MoveUp")
+                {
+                    PlayerPrefs.SetString("MoveUp", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                }
+
+                else if (currentKey.transform.name == "MoveLeft")
+                {
+                    PlayerPrefs.SetString("MoveLeft", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                }
+
+                else if (currentKey.transform.name == "MoveRight")
+                {
+                    PlayerPrefs.SetString("MoveRight", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                }
+
+                else if (currentKey.transform.name == "MoveDown")
+                {
+                    PlayerPrefs.SetString("MoveDown", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                }
+
                 currentKey = null;
+                EventSystem.current.SetSelectedGameObject(null);
             }
         }
     }
@@ -79,5 +136,13 @@ public class SettingsMenu : MonoBehaviour
     {
         clicked.GetComponentInChildren<TextMeshProUGUI>().text = "Press a key...";
         currentKey = clicked;
+    }
+
+    public void TextColourBlack(TextMeshProUGUI text){
+        text.color = Color.black;
+    }
+
+    public void TextColourWhite(TextMeshProUGUI text){
+        text.color = Color.white;
     }
 }

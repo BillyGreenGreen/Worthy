@@ -35,17 +35,22 @@ public class MainMenu : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("ability2"))
         {
-            PlayerPrefs.SetString("ability2", "Space");
+            PlayerPrefs.SetString("ability2", "E");
         }
 
         if (!PlayerPrefs.HasKey("ability3"))
         {
-            PlayerPrefs.SetString("ability3", "F");
+            PlayerPrefs.SetString("ability3", "R");
         }
 
         if (!PlayerPrefs.HasKey("ability4"))
         {
-            PlayerPrefs.SetString("ability4", "R");
+            PlayerPrefs.SetString("ability4", "F");
+        }
+
+        if (!PlayerPrefs.HasKey("dash"))
+        {
+            PlayerPrefs.SetString("dash", "Space");
         }
     }
 
