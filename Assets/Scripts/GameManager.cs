@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
     public TextMeshProUGUI debug;
     public bool canDropAbilityInInventory;
+    public bool upgradeMenuOpen;
 
     //Player Stats
     public string GM_class_selected;
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadClassAbilities(){
-        //validation on whether or not its first time playing
+        //validation on whether or not its first time playing is needed here
         switch(GM_class_selected){
             case "Elementalist":
                 GM_buyable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));

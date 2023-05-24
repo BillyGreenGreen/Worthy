@@ -51,26 +51,37 @@ public class HoverShowDescription : MonoBehaviour
                 card.transform.Find("Canvas").Find("AbilityName").GetComponent<TextMeshProUGUI>().text = abilityName;
                 string name = abilitySprite.name.Split("_")[0] + "_" + abilitySprite.name.Split("_")[1];
                 Debug.Log(name);
-                Ability a = new Ability(name);
-                a.UpdateAbility();
-                card.transform.Find("Canvas").Find("AbilityDescription").GetComponent<TextMeshProUGUI>().text = a.description;
+                foreach(var ability in GameManager.instance.GM_bought_abilities){
+                    if (ability.name == gameObject.name){
+                        Debug.Log(ability.morphLevel);
+                        ability.UpdateAbility();
+                        card.transform.Find("Canvas").Find("AbilityDescription").GetComponent<TextMeshProUGUI>().text = ability.description;
+                    }
+                }
+                
             }
             else{
-                Vector3 mousePos = Input.mousePosition;
-                //mousePos.y += yOffset;
-                Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-                objectPos.y += yOffset;
-                objectPos.z = 0;
-                card = Instantiate(Resources.Load<GameObject>("HoleInTheWall/cardhoverPrefab"), objectPos, Quaternion.identity);
-                card.transform.Find("Canvas").Find("AbilityImage").GetComponent<Image>().sprite = abilitySprite;
-                string abilityName = abilitySprite.name.Split("_")[1];
-                abilityName = string.Concat(abilityName.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
-                card.transform.Find("Canvas").Find("AbilityName").GetComponent<TextMeshProUGUI>().text = abilityName;
-                string name = abilitySprite.name.Split("_")[0] + "_" + abilitySprite.name.Split("_")[1];
-                Debug.Log(name);
-                Ability a = new Ability(name);
-                a.UpdateAbility();
-                card.transform.Find("Canvas").Find("AbilityDescription").GetComponent<TextMeshProUGUI>().text = a.description;
+                if (!GameManager.instance.upgradeMenuOpen){
+                    Vector3 mousePos = Input.mousePosition;
+                    //mousePos.y += yOffset;
+                    Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+                    objectPos.y += yOffset;
+                    objectPos.z = 0;
+                    card = Instantiate(Resources.Load<GameObject>("HoleInTheWall/cardhoverPrefab"), objectPos, Quaternion.identity);
+                    card.transform.Find("Canvas").Find("AbilityImage").GetComponent<Image>().sprite = abilitySprite;
+                    string abilityName = abilitySprite.name.Split("_")[1];
+                    abilityName = string.Concat(abilityName.Select(x => char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+                    card.transform.Find("Canvas").Find("AbilityName").GetComponent<TextMeshProUGUI>().text = abilityName;
+                    string name = abilitySprite.name.Split("_")[0] + "_" + abilitySprite.name.Split("_")[1];
+                    //Debug.Log(name);
+                    foreach(var ability in GameManager.instance.GM_buyable_abilities){
+                        if (ability.name == gameObject.GetComponent<Image>().sprite.name.Substring(0, gameObject.GetComponent<Image>().sprite.name.Length-6)){
+                            
+                            ability.UpdateAbility();
+                            card.transform.Find("Canvas").Find("AbilityDescription").GetComponent<TextMeshProUGUI>().text = ability.description;
+                        }
+                    }
+                }
             }
         }
         
