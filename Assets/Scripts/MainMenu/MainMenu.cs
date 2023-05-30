@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -52,11 +53,48 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetString("dash", "Space");
         }
+
+        if (!PlayerPrefs.HasKey("Utility1"))
+        {
+            PlayerPrefs.SetString("Utility1", "1");
+        }
+
+        if (!PlayerPrefs.HasKey("Utility2"))
+        {
+            PlayerPrefs.SetString("Utility2", "2");
+        }
+
+        if (!PlayerPrefs.HasKey("Utility3"))
+        {
+            PlayerPrefs.SetString("Utility3", "3");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void TextColourChangeToNew(TextMeshProUGUI text){
+        if (text.color == ConvertColorTo01(254, 230, 151)){
+            text.color = ConvertColorTo01(221, 202, 139);
+        }
+        else{
+            text.color = ConvertColorTo01(82, 82, 82);
+        }
+    }
+
+    public void TextColourChangeToOld(TextMeshProUGUI text){
+        if (text.color == ConvertColorTo01(221, 202, 139)){
+            text.color = ConvertColorTo01(254, 230, 151);
+        }
+        else{
+            text.color = ConvertColorTo01(115, 115, 115);
+        }
+    }
+
+    private Color ConvertColorTo01 (int r, int g, int b){
+        return new Color(r/255.0f, g/255.0f, b/255.0f);
     }
 }

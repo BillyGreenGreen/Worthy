@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
     public TextMeshProUGUI[] keybindsGUI;
+    public GameObject[] keybindsImageGUI;
     private Dictionary<string, KeyCode> keyBinds = new Dictionary<string, KeyCode>();
     private GameObject currentKey;
     // Start is called before the first frame update
@@ -14,39 +16,76 @@ public class SettingsMenu : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("ability1"))
         {
-            keybindsGUI[0].text = PlayerPrefs.GetString("ability1");
+            //keybindsGUI[0].text = PlayerPrefs.GetString("ability1");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability1").ToUpper() + "-Key");
+            keybindsImageGUI[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability1").ToUpper() + "-Key");
+            keybindsImageGUI[0].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("ability2"))
         {
-            keybindsGUI[1].text = PlayerPrefs.GetString("ability2");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability2").ToUpper() + "-Key");
+            keybindsImageGUI[1].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability2").ToUpper() + "-Key");
+            keybindsImageGUI[1].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("ability3"))
         {
-            keybindsGUI[2].text = PlayerPrefs.GetString("ability3");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability3").ToUpper() + "-Key");
+            keybindsImageGUI[2].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability3").ToUpper() + "-Key");
+            keybindsImageGUI[2].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("ability4"))
         {
-            keybindsGUI[3].text = PlayerPrefs.GetString("ability4");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability4").ToUpper() + "-Key");
+            keybindsImageGUI[3].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("ability4").ToUpper() + "-Key");
+            keybindsImageGUI[3].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("dash"))
         {
-            keybindsGUI[4].text = PlayerPrefs.GetString("dash");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("dash").ToUpper() + "-Key");
+            keybindsImageGUI[4].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("dash").ToUpper() + "-Key");
+            keybindsImageGUI[4].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("MoveUp"))
         {
-            keybindsGUI[5].text = PlayerPrefs.GetString("MoveUp");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveUp").ToUpper() + "-Key");
+            keybindsImageGUI[5].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveUp").ToUpper() + "-Key");
+            keybindsImageGUI[5].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("MoveDown"))
         {
-            keybindsGUI[6].text = PlayerPrefs.GetString("MoveDown");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveDown").ToUpper() + "-Key");
+            keybindsImageGUI[6].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveDown").ToUpper() + "-Key");
+            keybindsImageGUI[6].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("MoveRight"))
         {
-            keybindsGUI[7].text = PlayerPrefs.GetString("MoveRight");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveRight").ToUpper() + "-Key");
+            keybindsImageGUI[7].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveRight").ToUpper() + "-Key");
+            keybindsImageGUI[7].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
         if (PlayerPrefs.HasKey("MoveLeft"))
         {
-            keybindsGUI[8].text = PlayerPrefs.GetString("MoveLeft");
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveLeft").ToUpper() + "-Key");
+            keybindsImageGUI[8].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("MoveLeft").ToUpper() + "-Key");
+            keybindsImageGUI[8].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+        }
+        if (PlayerPrefs.HasKey("Utility1"))
+        {
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility1").ToUpper() + "-Key");
+            keybindsImageGUI[9].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility1").ToUpper() + "-Key");
+            keybindsImageGUI[9].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+        }
+        if (PlayerPrefs.HasKey("Utility2"))
+        {
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility2").ToUpper() + "-Key");
+            keybindsImageGUI[10].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility2").ToUpper() + "-Key");
+            keybindsImageGUI[10].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+        }
+        if (PlayerPrefs.HasKey("Utility3"))
+        {
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility3").ToUpper() + "-Key");
+            keybindsImageGUI[11].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + PlayerPrefs.GetString("Utility3").ToUpper() + "-Key");
+            keybindsImageGUI[11].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
         }
     }
 
@@ -69,61 +108,132 @@ public class SettingsMenu : MonoBehaviour
                 {
                     PlayerPrefs.SetString("ability1", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    //currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+                    //currentKey.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
                 }
                 else if (currentKey.transform.name == "Ability2")
                 {
                     PlayerPrefs.SetString("ability2", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
                 else if (currentKey.transform.name == "Ability3")
                 {
                     PlayerPrefs.SetString("ability3", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "Ability4")
                 {
                     PlayerPrefs.SetString("ability4", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "Dash")
                 {
                     PlayerPrefs.SetString("dash", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "MoveUp")
                 {
                     PlayerPrefs.SetString("MoveUp", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "MoveLeft")
                 {
                     PlayerPrefs.SetString("MoveLeft", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "MoveRight")
                 {
                     PlayerPrefs.SetString("MoveRight", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 else if (currentKey.transform.name == "MoveDown")
                 {
                     PlayerPrefs.SetString("MoveDown", e.keyCode.ToString());
                     PlayerPrefs.Save();
-                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+                }
+
+                else if (currentKey.transform.name == "ExtraButton1")
+                {
+                    PlayerPrefs.SetString("Utility1", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+                }
+
+                else if (currentKey.transform.name == "ExtraButton2")
+                {
+                    PlayerPrefs.SetString("Utility2", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+                }
+
+                else if (currentKey.transform.name == "ExtraButton3")
+                {
+                    PlayerPrefs.SetString("Utility3", e.keyCode.ToString());
+                    PlayerPrefs.Save();
+                    currentKey.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                    currentKey.transform.Find("Key").GetComponent<Image>().enabled = true;
+                    Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + e.keyCode.ToString().ToUpper() + "-Key");
+                    currentKey.transform.Find("Key").GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
                 }
 
                 currentKey = null;
@@ -135,6 +245,7 @@ public class SettingsMenu : MonoBehaviour
     public void ChangeKey(GameObject clicked)
     {
         clicked.GetComponentInChildren<TextMeshProUGUI>().text = "Press a key...";
+        clicked.transform.Find("Key").GetComponent<Image>().enabled = false;
         currentKey = clicked;
     }
 

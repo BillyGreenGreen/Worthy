@@ -56,6 +56,16 @@ namespace Map
             view.SetLineColors();
             mapNode.ShowSwirlAnimation();
 
+            if (Mathf.Floor(GameObject.Find("Music").GetComponent<BarCounterMix>().audio.time) % 6 != 0){
+                float delay = (-(Mathf.Floor(GameObject.Find("Music").GetComponent<BarCounterMix>().audio.time) % 6)) + 6f;
+                enterNodeDelay = delay;
+                
+                Debug.Log(enterNodeDelay);
+            }
+            else{
+                enterNodeDelay = 0;
+            }
+
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => EnterNode(mapNode));
         }
 
@@ -70,14 +80,17 @@ namespace Map
             {
                 case NodeType.MinorEnemy:
                     GameObject.Find("LevelChanger").GetComponent<FadeLevelChanger>().FadeToLevel(2);
+                    GameObject.Find("Music").GetComponent<BarCounterMix>().audio.clip = Resources.Load<AudioClip>("Music/gameMainLoopWAV");
+                    GameObject.Find("Music").GetComponent<BarCounterMix>().audio.Play();
                     break;
                 case NodeType.EliteEnemy:
                     break;
                 case NodeType.RestSite:
                     break;
-                case NodeType.Treasure:
+                case NodeType.Relic:
                     break;
-                case NodeType.Store:
+                case NodeType.HoleInTheWall:
+                    GameObject.Find("LevelChanger").GetComponent<FadeLevelChanger>().FadeToLevel(5);
                     break;
                 case NodeType.Boss:
                     break;

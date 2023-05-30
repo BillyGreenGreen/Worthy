@@ -12,6 +12,7 @@ public class AbilityHotbar : MonoBehaviour
     public List<Button> abilityClickButtons;
     public List<GameObject> popupAnchors;
     public List<TextMeshProUGUI> keybinds;
+    public List<TextMeshProUGUI> utilityKeybinds;
     public List<Image> abilityIcons;
 
     public List<TextMeshProUGUI> cooldownNumbers;
@@ -41,6 +42,15 @@ public class AbilityHotbar : MonoBehaviour
                 keybinds[count].text = ability.hotkey.ToString();
             }
             abilityIcons[count].sprite = ability.icon;
+            count++;
+        }
+        count = 0;
+        foreach (var text in utilityKeybinds){
+            string key = PlayerPrefs.GetString("Utility" + (count+1));
+            if (key.Contains("Alpha")){
+                key = key.Split("Alpha")[1];
+            }
+            text.text = key;
             count++;
         }
     }

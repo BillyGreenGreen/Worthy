@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5438924757053909893}
   - component: {fileID: 1210753655269316203}
   - component: {fileID: -4727782069045465937}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mage_FlamePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}

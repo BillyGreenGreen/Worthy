@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public bool canDropAbilityInInventory;
     public bool upgradeMenuOpen;
 
+    public TextMeshProUGUI countdownText;
+
+    public bool playerCanMove = true;
+
     //Player Stats
     public string GM_class_selected;
 

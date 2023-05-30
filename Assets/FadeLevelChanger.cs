@@ -19,4 +19,8 @@ public class FadeLevelChanger : MonoBehaviour
             OnFadeComplete();
         }
     }
+
+    public void QuitGame(){
+        Application.Quit();
+    }
 }

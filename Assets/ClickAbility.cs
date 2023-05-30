@@ -8,7 +8,10 @@ public class ClickAbility : MonoBehaviour, IPointerDownHandler
 {
     private Canvas canvas;
     public void OnPointerDown(PointerEventData eventData){
-        Debug.Log("OnPointerDown");
+        //This will be implemented later when we decide to actually do upgrades
+        
+        
+        /*Debug.Log("OnPointerDown");
         GameManager.instance.upgradeMenuOpen = true;
         canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         GameObject panel = Instantiate(Resources.Load<GameObject>("HoleInTheWall/Upgrade"), new Vector3(0,0,0), Quaternion.identity);

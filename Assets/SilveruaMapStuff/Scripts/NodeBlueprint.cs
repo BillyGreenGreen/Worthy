@@ -7,8 +7,8 @@ namespace Map
         MinorEnemy,
         EliteEnemy,
         RestSite,
-        Treasure,
-        Store,
+        Relic,
+        HoleInTheWall,
         Boss,
         Mystery
     }

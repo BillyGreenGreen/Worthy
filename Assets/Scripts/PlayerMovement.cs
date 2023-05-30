@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
+        if (GameManager.instance.playerCanMove)
+            rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
     }
 }
