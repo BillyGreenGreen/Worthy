@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 
 public class BarCounterMix : MonoBehaviour
 {
-    public AudioSource audio;
+    public new AudioSource audio; //THIS MAY NOW BE BROKE WITH THE NEW KEYWORD
     Camera cam;
     float twoSecondTimer = 2;
     bool twoSecondFlag = false;
