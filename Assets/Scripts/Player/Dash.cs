@@ -9,6 +9,8 @@ public class Dash : MonoBehaviour
     [SerializeField] private Slider dashBar1;
     [SerializeField] private Slider dashBar2;
 
+    [SerializeField] private TrailRenderer tr;
+
     private float dashTimer1;
     private float dashTimer2;
 
@@ -61,7 +63,12 @@ public class Dash : MonoBehaviour
         if (isDashing){
             Vector2 dashDirection = rb.velocity;
             rb.AddForce(dashDirection * dashPower, ForceMode2D.Impulse);
+            tr.emitting = true;
             isDashing = false;
+
+        }
+        else {
+            tr.emitting = false;
         }
     }
 }

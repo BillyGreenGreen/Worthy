@@ -45,6 +45,7 @@ public class BarCounterMix : MonoBehaviour
     {
         cam = Camera.main;
         audio = GetComponent<AudioSource>();
+        audio.volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     // Update is called once per frame

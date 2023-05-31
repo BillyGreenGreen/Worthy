@@ -71,6 +71,12 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetString("Utility3", "3");
         }
+
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 0.5f);
+        }
+
     }
 
     // Update is called once per frame

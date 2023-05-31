@@ -11,9 +11,18 @@ public class SettingsMenu : MonoBehaviour
     public GameObject[] keybindsImageGUI;
     private Dictionary<string, KeyCode> keyBinds = new Dictionary<string, KeyCode>();
     private GameObject currentKey;
+
+    private AudioSource music;
+    private Slider slider;
+    private TextMeshProUGUI percentageMusicVolumeText;
     // Start is called before the first frame update
     void Start()
     {
+        slider = GameObject.Find("MusicSlider").GetComponent<Slider>();
+        music = GameObject.Find("Music").GetComponent<AudioSource>();
+        percentageMusicVolumeText = GameObject.Find("Percentage").GetComponent<TextMeshProUGUI>();
+        slider.value = music.volume;
+        percentageMusicVolumeText.text = Mathf.Floor(slider.value * 100).ToString()  + "%";
         if (PlayerPrefs.HasKey("ability1"))
         {
             //keybindsGUI[0].text = PlayerPrefs.GetString("ability1");
@@ -256,4 +265,12 @@ public class SettingsMenu : MonoBehaviour
     public void TextColourWhite(TextMeshProUGUI text){
         text.color = Color.white;
     }
+
+    public void ChangeMusicVolume(){
+        
+        PlayerPrefs.SetFloat("MusicVolume", slider.value);
+        music.volume = PlayerPrefs.GetFloat("MusicVolume");
+        percentageMusicVolumeText.text = Mathf.Floor(slider.value * 100).ToString() + "%";
+    }
+
 }
