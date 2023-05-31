@@ -57,10 +57,10 @@ namespace Map
             mapNode.ShowSwirlAnimation();
 
             if (Mathf.Floor(GameObject.Find("Music").GetComponent<BarCounterMix>().audio.time) % 6 != 0){
-                float delay = (-(Mathf.Floor(GameObject.Find("Music").GetComponent<BarCounterMix>().audio.time) % 6)) + 6f;
+                float delay = (-(GameObject.Find("Music").GetComponent<BarCounterMix>().audio.time % 6)) + 5.72f;
                 enterNodeDelay = delay;
                 
-                Debug.Log(enterNodeDelay);
+                Debug.Log("NODE DELAY: " + enterNodeDelay);
             }
             else{
                 enterNodeDelay = 0;
@@ -79,9 +79,10 @@ namespace Map
             switch (mapNode.Node.nodeType)
             {
                 case NodeType.MinorEnemy:
-                    GameObject.Find("LevelChanger").GetComponent<FadeLevelChanger>().FadeToLevel(2);
+                    Debug.Log("NOW");
                     GameObject.Find("Music").GetComponent<BarCounterMix>().audio.clip = Resources.Load<AudioClip>("Music/gameMainLoopWAV");
                     GameObject.Find("Music").GetComponent<BarCounterMix>().audio.Play();
+                    GameObject.Find("LevelChanger").GetComponent<FadeLevelChanger>().FadeToLevel(2);
                     break;
                 case NodeType.EliteEnemy:
                     break;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 
@@ -13,11 +14,19 @@ public class GameManager : MonoBehaviour
     public Dictionary<int, Ability> GM_abilities = new Dictionary<int, Ability>();
     public List<Ability> GM_usable_abilities = new List<Ability>();//THIS IS USED ONLY FOR TESTING
 
+    // === HOTBAR ABILITIES ===
     public List<Ability> GM_buyable_abilities = new List<Ability>();
     public List<Ability> GM_bought_abilities = new List<Ability>();
     public Dictionary<int, Ability> GM_hotbar_abilities = new Dictionary<int, Ability>();
 
+    // === HOTBAR POTIONS ===
+    public List<Potion> GM_buyable_potions = new List<Potion>();
+    public Dictionary<int, Potion> GM_hotbar_potions = new Dictionary<int, Potion>();
+
+    // === PREFAB DURATION ABILITIES ===
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
+
+    // === MISC ===
     public TextMeshProUGUI debug;
     public bool canDropAbilityInInventory;
     public bool upgradeMenuOpen;
@@ -87,44 +96,49 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        foreach (Ability ability in GM_hotbar_abilities.Values)
-        {
-            if (!ability.ready)
+        if (GameObject.Find("Countdown")){
+            countdownText = GameObject.Find("Countdown").GetComponent<TextMeshProUGUI>();
+        }
+        if (SceneManager.GetActiveScene().name == "SampleScene"){
+            foreach (Ability ability in GM_hotbar_abilities.Values)
             {
-                ability.cooldownTimer -= Time.deltaTime;
-
-                if (ability.cooldownTimer <= 0f)
+                if (!ability.ready)
                 {
-                    ability.ready = true;
-                    ability.cooldownTimer = ability.cooldownTime;
-                }
+                    ability.cooldownTimer -= Time.deltaTime;
 
-            }
-
-            if (ability.ready && Input.GetKeyDown(ability.hotkey))
-            {
-                ActivateAbility(ability);
-                foreach (Ability ab in GM_abilities.Values){
-                    if (ab.name == ability.name){
-                        PutOnCooldown(ab);
+                    if (ability.cooldownTimer <= 0f)
+                    {
+                        ability.ready = true;
+                        ability.cooldownTimer = ability.cooldownTime;
                     }
-                }
-                
-            }
-        }
 
-        List<GameObject> gameObjectsToClear = new List<GameObject>();
-        List<GameObject> keys = new List<GameObject>(GM_DurationAbilities.Keys);
-        foreach (GameObject prefab in keys){
-            GM_DurationAbilities[prefab] -= Time.deltaTime;
-            //Debug.Log("Object:" + prefab.name + " Timer: " + timer);
-            if (GM_DurationAbilities[prefab] <= 0){
-                Destroy(prefab);
-                gameObjectsToClear.Add(prefab);
+                }
+
+                if (ability.ready && Input.GetKeyDown(ability.hotkey))
+                {
+                    ActivateAbility(ability);
+                    foreach (Ability ab in GM_abilities.Values){
+                        if (ab.name == ability.name){
+                            PutOnCooldown(ab);
+                        }
+                    }
+                    
+                }
             }
-        }
-        foreach (GameObject go in gameObjectsToClear){
-            GM_DurationAbilities.Remove(go);
+
+            List<GameObject> gameObjectsToClear = new List<GameObject>();
+            List<GameObject> keys = new List<GameObject>(GM_DurationAbilities.Keys);
+            foreach (GameObject prefab in keys){
+                GM_DurationAbilities[prefab] -= Time.deltaTime;
+                //Debug.Log("Object:" + prefab.name + " Timer: " + timer);
+                if (GM_DurationAbilities[prefab] <= 0){
+                    Destroy(prefab);
+                    gameObjectsToClear.Add(prefab);
+                }
+            }
+            foreach (GameObject go in gameObjectsToClear){
+                GM_DurationAbilities.Remove(go);
+            }
         }
 
         
@@ -132,6 +146,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadClassAbilities(){
         //validation on whether or not its first time playing is needed here
+        GM_buyable_potions.Add(new Potion("Potion of Power"));
+        GM_buyable_potions.Add(new Potion("Potent Potion of Power"));
+        GM_buyable_potions.Add(new Potion("Worthy Potion of Power"));
+        GM_buyable_potions.Add(new Potion("Potion of Speed"));
+        GM_buyable_potions.Add(new Potion("Potent Potion of Speed"));
+        GM_buyable_potions.Add(new Potion("Worthy Potion of Speed"));
+        GM_buyable_potions.Add(new Potion("Potion of Evasion"));
+        GM_buyable_potions.Add(new Potion("Potent Potion of Evasion"));
+        GM_buyable_potions.Add(new Potion("Worthy Potion of Evasion"));
+        
+        
         switch(GM_class_selected){
             case "Elementalist":
                 GM_buyable_abilities.Add(new Ability("Mage_IceSpike", KeyCode.None));
