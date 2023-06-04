@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public int health = 100;
     public int shieldAmount;
+    public float dodgeChance = 0f;
 
     public TextMeshProUGUI healthText;
 
@@ -69,14 +70,33 @@ public class Player : MonoBehaviour
     }
 
     void TakeDamage(int damage){
-        if (shieldAmount > 0){
-            shieldAmount -= damage;
-            //healthBar.RemoveShield(damage);
+        if (dodgeChance > 0){
+            float rng = Random.Range(1, 101);
+            if (rng >= dodgeChance){
+                if (shieldAmount > 0){
+                shieldAmount -= damage;
+                //healthBar.RemoveShield(damage);
+                }
+                else{
+                    health -= damage;
+                    //healthBar.RemoveHealth(damage);
+                }
+            }
+            else{
+                Debug.Log("DODGED");
+            }
         }
         else{
-            health -= damage;
-            //healthBar.RemoveHealth(damage);
+            if (shieldAmount > 0){
+                shieldAmount -= damage;
+                //healthBar.RemoveShield(damage);
+            }
+            else{
+                health -= damage;
+                //healthBar.RemoveHealth(damage);
+            }
         }
+        
     }
 
     //colliding with other game objects that have physics

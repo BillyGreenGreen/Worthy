@@ -155,6 +155,10 @@ public class GameManager : MonoBehaviour
         GM_buyable_potions.Add(new Potion("Potion of Evasion"));
         GM_buyable_potions.Add(new Potion("Potent Potion of Evasion"));
         GM_buyable_potions.Add(new Potion("Worthy Potion of Evasion"));
+
+        GM_hotbar_potions.Add(1, new Potion("Potion of Evasion", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility1"))));
+        GM_hotbar_potions.Add(2, new Potion("Potent Potion of Evasion", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility2"))));
+        GM_hotbar_potions.Add(3, new Potion("Worthy Potion of Evasion", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility3"))));
         
         
         switch(GM_class_selected){
