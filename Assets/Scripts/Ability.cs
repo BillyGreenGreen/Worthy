@@ -16,6 +16,8 @@ public class Ability
     public int baseCost;
     public string description;
     public bool ready = true;
+    public string powerLevel;
+    private string powerColourForTextDescription;
     public Vector2Int morphLevel;
     
     //implement all above
@@ -46,7 +48,20 @@ public class Ability
             //Mage
             case "Mage_FlamePool":
                 icon = Resources.Load<Sprite>("Abilities/Mage_FlamePool_500px");
-                description = "<color=#FFFFFF>Conjure a pool of flames at a target location, dealing <color=#3449eb>medium <color=#FFFFFF>damage over time and applying a <color=#eb6134>Flame <color=#FFFFFF>debuff.";
+                powerLevel = "Medium";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Conjure a pool of flames at a target location, dealing <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#FFFFFF>damage over time and applying a <color=#eb6134>Flame <color=#FFFFFF>debuff.";
                 cooldownTime = 10f;
                 baseCost = 200;
                 morphLevel = new Vector2Int(0,0);
@@ -61,7 +76,20 @@ public class Ability
                 break;
             case "Mage_IceSpike":
                 icon = Resources.Load<Sprite>("Abilities/Mage_IceSpike_500px");
-                description = "<color=#FFFFFF>Manifest a harmful spike of compressed ice and hurl it forwards. Will deal <color=#e84346>high <color=#FFFFFF>damage to the target.";
+                powerLevel = "High";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Manifest a harmful spike of compressed ice and hurl it forwards. Will deal <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#FFFFFF>damage to the target.";
                 cooldownTime = 3f;
                 baseCost = 100;
                 morphLevel = new Vector2Int(0,0);
@@ -76,7 +104,20 @@ public class Ability
 
             case "Mage_ChainShock":
                 icon = Resources.Load<Sprite>("Abilities/Mage_ChainShock_500px");
-                description = "<color=#FFFFFF>Produce static ball of <color=#f7dc0f>lightning <color=#FFFFFF>and discharge it forwards.\nDeal <color=#43e86c>light <color=#FFFFFF>damage and when an enemy is hit the damage dealt will also chain to 3 targets around the enemy.";
+                powerLevel = "Medium";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Produce static ball of <color=#f7dc0f>lightning <color=#FFFFFF>and discharge it forwards.\nDeal <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#FFFFFF>damage and when an enemy is hit the damage dealt will also chain to 3 targets around the enemy.";
                 cooldownTime = 5f;
                 baseCost = 300;
                 morphLevel = new Vector2Int(0,0);
@@ -90,6 +131,19 @@ public class Ability
                 break;
             case "Mage_EarthWarden":
                 icon = Resources.Load<Sprite>("Abilities/Mage_EarthWarden_500px");
+                powerLevel = "Medium";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
                 description = "<color=#FFFFFF>Summon an Earth Warden totem at the target location. The totem will taunt any enemies that are near and will take damage until its health is 0.";
                 cooldownTime = 30f;
                 baseCost = 500;
@@ -104,7 +158,20 @@ public class Ability
                 break;
             case "Mage_FlowingWater":
                 icon = Resources.Load<Sprite>("Abilities/Mage_FlowingWater_500px");
-                description = "<color=#FFFFFF>Apply a heal over time effect to yourself, healing for <color=#43e86c>light <color=#FFFFFF>amounts 5 times over 10 seconds";
+                powerLevel = "Light";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Apply a heal over time effect to yourself, healing for <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#FFFFFF>amounts 5 times over 10 seconds";
                 cooldownTime = 12f;
                 baseCost = 100;
                 morphLevel = new Vector2Int(0,0);
@@ -118,7 +185,20 @@ public class Ability
                 break;
             case "Mage_FrozenOrb":
                 icon = Resources.Load<Sprite>("Abilities/Mage_FrozenOrb_500px");
-                description = "<color=#FFFFFF>Launch a ball of swirling ice at a target location which will deal <color=#43e86c>light <color=#FFFFFF>damage over time to nearby enemies and give them a <color=#43aee8>Frost <color=#FFFFFF>debuff.";
+                powerLevel = "Light";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Launch a ball of swirling ice at a target location which will deal <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#FFFFFF>damage over time to nearby enemies and give them a <color=#43aee8>Frost <color=#FFFFFF>debuff.";
                 cooldownTime = 8f;
                 baseCost = 200;
                 morphLevel = new Vector2Int(0,0);
@@ -132,7 +212,20 @@ public class Ability
                 break;
             case "Mage_WhistlingShield":
                 icon = Resources.Load<Sprite>("Abilities/Mage_WhistlingShield_500px");
-                description = "<color=#FFFFFF>Construct a shield made from whistling winds which provides a 75 health shield and does <color=#43e86c>light <color=#dcf1fc>Wind <color=#FFFFFF>damage to nearby enemies.";
+                powerLevel = "Light";
+                if (powerLevel == "Light"){
+                    powerColourForTextDescription = "#43e86c";
+                }
+                else if (powerLevel == "Medium"){
+                    powerColourForTextDescription = "#3449eb";
+                }
+                else if (powerLevel == "High"){
+                    powerColourForTextDescription = "#e84346";
+                }
+                else if (powerLevel == "Worthy"){
+                    powerColourForTextDescription = "#000000";
+                }
+                description = "<color=#FFFFFF>Construct a shield made from whistling winds which provides a 75 health shield and does <color=" + powerColourForTextDescription + ">" + powerLevel.ToLower() + " <color=#dcf1fc>Wind <color=#FFFFFF>damage to nearby enemies.";
                 cooldownTime = 15f;
                 baseCost = 150;
                 morphLevel = new Vector2Int(0,0);

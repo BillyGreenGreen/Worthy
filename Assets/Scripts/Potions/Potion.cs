@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Potion
 {
     public string _name;
-    public Image icon;
+    public Sprite icon;
     public float timeRemaining;
     public KeyCode keyBind;
 
@@ -15,9 +15,9 @@ public class Potion
     public Potion(string name, KeyCode hotkey = KeyCode.None){
         _name = name;
         keyBind = hotkey;
+        icon = Resources.Load<Sprite>("Potions/" + name);
         switch (_name){
             case("Potion of Power"):
-                //icon = icon that we make in resources
                 timeRemaining = 30;
                 break;
             case("Potent Potion of Power"):

@@ -10,9 +10,10 @@ public class AbilityHotbar : MonoBehaviour
 {
     public List<Button> abilityClickButtons;
     public List<GameObject> popupAnchors;
-    public List<TextMeshProUGUI> keybinds;
-    public List<TextMeshProUGUI> utilityKeybinds;
+    public List<Image> keybinds;
+    public List<Image> utilityKeybinds;
     public List<Image> abilityIcons;
+    public List<Image> utilityIcons;
 
     public List<TextMeshProUGUI> cooldownNumbers;
 
@@ -33,23 +34,20 @@ public class AbilityHotbar : MonoBehaviour
 
         int count = 0;
         foreach (Ability ability in availiableAbilities.Values){
-            Debug.Log(ability.hotkey.ToString());
-            if (ability.hotkey.ToString() == "Space"){
-                keybinds[count].text = "Spc";
-            }
-            else{
-                keybinds[count].text = ability.hotkey.ToString();
-            }
+            Debug.Log(PlayerPrefs.GetString("ability" + (count + 1)).ToUpper());
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + ability.hotkey.ToString().ToUpper() + "-Key");
+            keybinds[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + ability.hotkey.ToString().ToUpper() + "-Key");
+            keybinds[count].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
             abilityIcons[count].sprite = ability.icon;
             count++;
         }
+
         count = 0;
-        foreach (var text in utilityKeybinds){
-            string key = PlayerPrefs.GetString("Utility" + (count+1));
-            if (key.Contains("Alpha")){
-                key = key.Split("Alpha")[1];
-            }
-            text.text = key;
+        foreach (Potion potion in GameManager.instance.GM_hotbar_potions.Values){
+            Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + potion.keyBind.ToString().ToUpper() + "-Key");
+            utilityKeybinds[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + potion.keyBind.ToString().ToUpper() + "-Key");
+            utilityKeybinds[count].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+            utilityIcons[count].sprite = potion.icon;
             count++;
         }
     }
