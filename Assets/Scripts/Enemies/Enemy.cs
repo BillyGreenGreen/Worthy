@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     public bool flamePoolDebuffRemove = false;
     public bool frozenOrbDebuffRemove = false;
 
+    private string powerPotionLevel;
+
     private void Start() {
     }
 
@@ -54,6 +56,8 @@ public class Enemy : MonoBehaviour
                 DOT.UpdateTickInfo(3, 10, 1);
             }
         }*/
+
+        powerPotionLevel = GameManager.instance.powerPotionLevel;
     }
 
     private void OnDrawGizmosSelected() {
@@ -72,9 +76,24 @@ public class Enemy : MonoBehaviour
                     icon.transform.SetParent(debuffIcons.transform);
                     flamePoolDebuffRemove = false;
                 }
+                
                 FlamePoolDOT flamePoolDOT = gameObject.AddComponent<FlamePoolDOT>();
-                flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
+
+                //Potion of Power
+                if (powerPotionLevel == "Medium"){
+                    flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
+                }
+                else if (powerPotionLevel == "High"){
+                    flamePoolDOT.UpdateDOTInfo(3, 20, 1);//ticks, damagePerTick, timeBetweenTicks
+                }
+                else if (powerPotionLevel == "Worthy"){
+                    flamePoolDOT.UpdateDOTInfo(3, 40, 1);//ticks, damagePerTick, timeBetweenTicks
+                }
+                else if (powerPotionLevel == "None"){
+                    flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
+                }
                 break;
+
             case "FrozenOrbRing":
                 if (debuffIcons.transform.Find("FrozenOrbDebuff(Clone)") == null){
                     GameObject icon = Instantiate(Resources.Load<GameObject>("Prefabs/MageAbilities/Debuffs/FrozenOrbDebuff"), new Vector3(0,0,0), Quaternion.identity);
@@ -82,16 +101,46 @@ public class Enemy : MonoBehaviour
                     frozenOrbDebuffRemove = false;
                 }
                 FrozenOrbDOT frozenOrbDOT = gameObject.AddComponent<FrozenOrbDOT>();
-                frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
+                if (powerPotionLevel == "Medium"){
+                    frozenOrbDOT.UpdateDOTInfo(10, 4, 0.2f);
+                }
+                else if (powerPotionLevel == "High"){
+                    frozenOrbDOT.UpdateDOTInfo(10, 10, 0.2f);
+                }
+                else if (powerPotionLevel == "Worthy"){
+                    frozenOrbDOT.UpdateDOTInfo(10, 32, 0.2f);
+                }
+                else if (powerPotionLevel == "None"){
+                    frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
+                }
+                
                 break;
             
                 
             case "WhistlingShield":
                 WhistlingShieldDOT whistlingShieldDOT = gameObject.AddComponent<WhistlingShieldDOT>();
-                whistlingShieldDOT.UpdateDOTInfo(12, 1, 0.1f);
+                if (powerPotionLevel == "Medium"){
+                    whistlingShieldDOT.UpdateDOTInfo(12, 2, 0.1f);
+                }
+                else if (powerPotionLevel == "High"){
+                    whistlingShieldDOT.UpdateDOTInfo(12, 6, 0.1f);
+                }
+                else if (powerPotionLevel == "Worthy"){
+                    whistlingShieldDOT.UpdateDOTInfo(12, 15, 0.1f);
+                }
+                else if (powerPotionLevel == "None"){
+                    whistlingShieldDOT.UpdateDOTInfo(12, 1, 0.1f);
+                }
+                
                 break;
             case "Mage_IceSpike(Clone)":
-                health -= 5;
+                if (powerPotionLevel == "High" || powerPotionLevel == "None" || powerPotionLevel == "Medium"){
+                    health -= 30;
+                }
+                else if (powerPotionLevel == "Worthy"){
+                    health -= 60;
+                }
+                
                 Destroy(other.gameObject);
                 break;
             case "Mage_ChainShockProjectile(Clone)":
@@ -110,20 +159,53 @@ public class Enemy : MonoBehaviour
                 if (gameObject.GetComponent<FlamePoolDOT>() == null){
                     flamePoolDebuffRemove = false;
                     FlamePoolDOT flamePoolDOT = gameObject.AddComponent<FlamePoolDOT>();
-                    flamePoolDOT.UpdateDOTInfo(3, 10, 1);
+                    if (powerPotionLevel == "Medium"){
+                    flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
+                    }
+                    else if (powerPotionLevel == "High"){
+                        flamePoolDOT.UpdateDOTInfo(3, 20, 1);//ticks, damagePerTick, timeBetweenTicks
+                    }
+                    else if (powerPotionLevel == "Worthy"){
+                        flamePoolDOT.UpdateDOTInfo(3, 40, 1);//ticks, damagePerTick, timeBetweenTicks
+                    }
+                    else if (powerPotionLevel == "None"){
+                        flamePoolDOT.UpdateDOTInfo(3, 10, 1);//ticks, damagePerTick, timeBetweenTicks
+                    }
                 }
                 break;
             case "FrozenOrbRing":
                 if (gameObject.GetComponent<FrozenOrbDOT>() == null){
                     frozenOrbDebuffRemove = false;
                     FrozenOrbDOT frozenOrbDOT = gameObject.AddComponent<FrozenOrbDOT>();
-                    frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
+                    if (powerPotionLevel == "Medium"){
+                    frozenOrbDOT.UpdateDOTInfo(10, 4, 0.2f);
+                    }
+                    else if (powerPotionLevel == "High"){
+                        frozenOrbDOT.UpdateDOTInfo(10, 10, 0.2f);
+                    }
+                    else if (powerPotionLevel == "Worthy"){
+                        frozenOrbDOT.UpdateDOTInfo(10, 32, 0.2f);
+                    }
+                    else if (powerPotionLevel == "None"){
+                        frozenOrbDOT.UpdateDOTInfo(10, 2, 0.2f);
+                    }
                 }
                 break;
             case "WhistlingShield":
                 if (gameObject.GetComponent<WhistlingShieldDOT>() == null){
                     WhistlingShieldDOT whistlingShieldDOT = gameObject.AddComponent<WhistlingShieldDOT>();
-                    whistlingShieldDOT.UpdateDOTInfo(12, 1, 0.1f);
+                    if (powerPotionLevel == "Medium"){
+                    whistlingShieldDOT.UpdateDOTInfo(12, 2, 0.1f);
+                    }
+                    else if (powerPotionLevel == "High"){
+                        whistlingShieldDOT.UpdateDOTInfo(12, 6, 0.1f);
+                    }
+                    else if (powerPotionLevel == "Worthy"){
+                        whistlingShieldDOT.UpdateDOTInfo(12, 15, 0.1f);
+                    }
+                    else if (powerPotionLevel == "None"){
+                        whistlingShieldDOT.UpdateDOTInfo(12, 1, 0.1f);
+                    }
                 }
                 break;
         }
@@ -156,7 +238,21 @@ public class Enemy : MonoBehaviour
                 //chainShockTimer = 10f; chain shock timer reset here if we dont want it to refresh afer being shot again, ask opinions
             }
             chainShockTimer = 10f;
-            health -= 20;
+            if (powerPotionLevel == "Medium"){
+                health -= 20;
+            }
+            else if (powerPotionLevel == "High"){
+                health -= 50;
+            }
+            else if (powerPotionLevel == "Worthy"){
+                health -= 100;
+            }
+            else if (powerPotionLevel == "None"){
+                health -= 20;
+            }
+            
+            
+            
             int count = numberOfHitsLeft;
             foreach(GameObject otherEnemy in chainShockRadiusCheck.GetComponent<ChainShockRadiusChecker>().otherEnemies){
                 if (!otherEnemy.GetComponent<Enemy>().hitByChainShock){

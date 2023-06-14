@@ -69,10 +69,13 @@ public class Potion
         switch (_name){
             case("Potion of Power"):
                 //add the buff here
+                GameManager.instance.powerPotionLevel = "Medium";
                 break;
             case("Potent Potion of Power"):
+                GameManager.instance.powerPotionLevel = "High";
                 break;
             case("Worthy Potion of Power"):
+                GameManager.instance.powerPotionLevel = "Worthy";
                 break;
             case("Potion of Speed"):
                 multiplier = (speedNormalPercent / 100f) * speed;
@@ -103,14 +106,17 @@ public class Potion
             case("Potion of Power"):
                 timeRemaining = 30;
                 potionIsBeingUsed = false;
+                GameManager.instance.powerPotionLevel = "None";
                 break;
             case("Potent Potion of Power"):
                 timeRemaining = 20;
                 potionIsBeingUsed = false;
+                GameManager.instance.powerPotionLevel = "None";
                 break;
             case("Worthy Potion of Power"):
                 timeRemaining = 15;
                 potionIsBeingUsed = false;
+                GameManager.instance.powerPotionLevel = "None";
                 break;
             case("Potion of Speed"):
                 timeRemaining = 25;

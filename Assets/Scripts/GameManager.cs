@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public List<Potion> GM_buyable_potions = new List<Potion>();
     public Dictionary<int, Potion> GM_hotbar_potions = new Dictionary<int, Potion>();
 
+    // === ABILITY MODIFIERS ===
+    public string powerPotionLevel = "None";
+
     // === PREFAB DURATION ABILITIES ===
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
 
@@ -157,8 +160,8 @@ public class GameManager : MonoBehaviour
         GM_buyable_potions.Add(new Potion("Worthy Potion of Evasion"));
 
         GM_hotbar_potions.Add(1, new Potion("Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility1"))));
-        GM_hotbar_potions.Add(2, new Potion("Potent Potion of Speed", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility2"))));
-        GM_hotbar_potions.Add(3, new Potion("Worthy Potion of Evasion", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility3"))));
+        GM_hotbar_potions.Add(2, new Potion("Potent Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility2"))));
+        GM_hotbar_potions.Add(3, new Potion("Worthy Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility3"))));
         
         
         switch(GM_class_selected){

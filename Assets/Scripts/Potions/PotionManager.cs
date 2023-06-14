@@ -22,6 +22,7 @@ public class PotionManager : MonoBehaviour
                 Debug.Log(potion._name);
                 potion.potionIsBeingUsed = true;
                 potion.ActivatePotion();
+                Debug.Log(GameManager.instance.powerPotionLevel);
                 potionSlotsUnder[count].sprite = Resources.Load<Sprite>("Potions/PotionUnderUsing");
                 if (potion._name.Contains("Worthy")){
                     particles[count].startColor = ConvertColorTo01(217, 170, 0);
