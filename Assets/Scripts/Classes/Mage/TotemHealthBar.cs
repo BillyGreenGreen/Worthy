@@ -22,4 +22,10 @@ public class TotemHealthBar : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("Enemy")){
+            health -= 0.5f;
+        }
+    }
 }

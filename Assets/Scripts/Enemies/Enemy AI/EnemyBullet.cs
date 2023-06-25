@@ -7,10 +7,13 @@ public class EnemyBullet : MonoBehaviour
 
     private Rigidbody2D rb;
     public float force;
+    private float minForce = 10f;
+    private float maxForce = 15f;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        force = Random.Range(minForce, maxForce);
     }
 
     private void FixedUpdate() {

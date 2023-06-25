@@ -10,15 +10,26 @@ public class EarthWardenTaunt : MonoBehaviour
     //trigger is outer circle
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Enemy")){
-            other.GetComponent<BasicRangedAI>().target = totem.transform;
-            other.GetComponent<BasicRangedAI>().distanceToStop = 2f;
+            if (other.GetComponent<BasicRangedAI>() != null){
+                other.GetComponent<BasicRangedAI>().target = totem.transform;
+                other.GetComponent<BasicRangedAI>().distanceToStop = 2f;
+            }
+            else if (other.GetComponent<BasicMeleeAI>() != null){
+                other.GetComponent<BasicMeleeAI>().target = totem.transform;
+            }
+            
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Enemy")){
-            other.GetComponent<BasicRangedAI>().target = GameObject.FindGameObjectWithTag("Player").transform;
-            other.GetComponent<BasicRangedAI>().distanceToStop = 8f;
+            if (other.GetComponent<BasicRangedAI>() != null){
+                other.GetComponent<BasicRangedAI>().target = GameObject.FindGameObjectWithTag("Player").transform;
+                other.GetComponent<BasicRangedAI>().distanceToStop = 8f;
+            }
+            else if (other.GetComponent<BasicMeleeAI>() != null){
+                other.GetComponent<BasicMeleeAI>().target = GameObject.FindGameObjectWithTag("Player").transform;
+            }
         }
     }
 }

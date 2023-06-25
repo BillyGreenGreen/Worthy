@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI debug;
     public bool canDropAbilityInInventory;
     public bool upgradeMenuOpen;
+    public bool enemiesCanMove = false;
 
     public TextMeshProUGUI countdownText;
 
@@ -160,8 +161,8 @@ public class GameManager : MonoBehaviour
         GM_buyable_potions.Add(new Potion("Worthy Potion of Evasion"));
 
         GM_hotbar_potions.Add(1, new Potion("Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility1"))));
-        GM_hotbar_potions.Add(2, new Potion("Potent Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility2"))));
-        GM_hotbar_potions.Add(3, new Potion("Worthy Potion of Power", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility3"))));
+        GM_hotbar_potions.Add(2, new Potion("Potent Potion of Speed", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility2"))));
+        GM_hotbar_potions.Add(3, new Potion("Worthy Potion of Evasion", (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Utility3"))));
         
         
         switch(GM_class_selected){

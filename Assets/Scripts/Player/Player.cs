@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public TextMeshProUGUI healthText;
 
+    private bool inMeleeRange = false;
     private float shieldTimer;
     private Dictionary<string, float> timers = new Dictionary<string, float>();
     private void Update(){
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage){
+    public void TakeDamage(int damage){
         if (dodgeChance > 0){
             float rng = Random.Range(1, 101);
             if (rng >= dodgeChance){
@@ -102,17 +103,22 @@ public class Player : MonoBehaviour
     //colliding with other game objects that have physics
     private void OnCollisionEnter2D(Collision2D other) {
         switch(other.transform.tag){
-            case "Enemy":
-                TakeDamage(10);
-                break;
+            
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
         //TODO: switch case for all damaging abilities to the player
-        /*switch(col.name){
-            case "AbilityNameHere":
-                TakeDamage(10);
-                break;*/
+        switch(col.transform.tag){
+            case "EnemyProjectile":
+                TakeDamage(5);
+                Destroy(col.gameObject);
+                break;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other) {
+    }
+
+  
 }

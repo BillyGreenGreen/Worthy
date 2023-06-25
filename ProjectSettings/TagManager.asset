@@ -24,8 +24,8 @@ TagManager:
   - FrozenOrbRing
   - EarthWardenTauntArea
   - FlamePoolArea
-  - 
-  - 
+  - EnemyMeleeCollider
+  - Player
   - 
   - 
   - 

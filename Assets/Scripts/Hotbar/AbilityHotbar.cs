@@ -11,6 +11,7 @@ public class AbilityHotbar : MonoBehaviour
     public List<Button> abilityClickButtons;
     public List<GameObject> popupAnchors;
     public List<Image> keybinds;
+    public List<TextMeshProUGUI> keybindsText;
     public List<Image> utilityKeybinds;
     public List<Image> abilityIcons;
     public List<Image> utilityIcons;
@@ -38,6 +39,7 @@ public class AbilityHotbar : MonoBehaviour
             Sprite toLoad = Resources.Load<Sprite>("Settings/KeyboardKeys/" + ability.hotkey.ToString().ToUpper() + "-Key");
             keybinds[count].GetComponent<Image>().sprite = Resources.Load<Sprite>("Settings/KeyboardKeys/" + ability.hotkey.ToString().ToUpper() + "-Key");
             keybinds[count].GetComponent<RectTransform>().sizeDelta = new Vector2(toLoad.texture.width / 10.24f, 50);
+            keybindsText[count].text = ability.hotkey.ToString();
             abilityIcons[count].sprite = ability.icon;
             count++;
         }

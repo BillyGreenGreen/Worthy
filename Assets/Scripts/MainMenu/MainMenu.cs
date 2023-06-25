@@ -77,6 +77,8 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetFloat("MusicVolume", 0.5f);
         }
 
+        Cursor.SetCursor(Resources.Load<Texture2D>("Cursor/cursor_50x50"), Vector2.zero, CursorMode.ForceSoftware);
+
     }
 
     // Update is called once per frame

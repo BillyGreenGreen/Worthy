@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
     //    All damage numbers for enemies below
     //    Provide ticks, damagePerTick and timeBetweenTicks below
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("COLLIDE :" + other.transform.name);
+        //Debug.Log("COLLIDE :" + other.transform.name);
         switch(other.transform.name){
             case "Mage_FlamePool(Clone)":
                 if (debuffIcons.transform.Find("FlamePoolDebuff(Clone)") == null){
