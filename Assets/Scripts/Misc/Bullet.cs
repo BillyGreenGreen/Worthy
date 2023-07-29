@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     public float force;
     public Rigidbody2D playerRb;
     // Start is called before the first frame update
+
+    
     void Start()
     {
         cam = Camera.main;
