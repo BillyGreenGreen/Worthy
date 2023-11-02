@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
                 GM_buyable_abilities.Add(new Ability("Mage_FlowingWater", KeyCode.None));
                 GM_buyable_abilities.Add(new Ability("Mage_FrozenOrb", KeyCode.None));
                 GM_buyable_abilities.Add(new Ability("Mage_WhistlingShield", KeyCode.None));
+                GM_buyable_abilities.Add(new Ability("Mage_GoldenGod", KeyCode.None));
 
                 GM_bought_abilities.Add(new Ability("Mage_FlamePool", KeyCode.None));
 

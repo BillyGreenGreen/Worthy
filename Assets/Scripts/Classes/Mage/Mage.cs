@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public static class Mage
 {
+    private static Vignette vg;
+    private static ChromaticAberration ca;
+    private static LensDistortion ld;
     
     //The two classes are Elementalist and Battle Mage
 
@@ -31,6 +37,9 @@ public static class Mage
                 break;
             case "Mage_WhistlingShield":
                 WhistlingShield();
+                break;
+            case "Mage_GoldenGod":
+                GoldenGod();
                 break;
             default:
                 IceSpike();
@@ -106,6 +115,23 @@ public static class Mage
     //Worthy Ability
     static void GoldenGod()
     {
+        //lens distortion scale 1.7 -> 1  intensity 0.4 -> 0
+        GameObject gpp = GameObject.Find("Global Post Processing");
+        gpp.GetComponent<Volume>().profile.TryGet(out ld);
+
+        //below is what is used in BarCounterMix.cs, need to change to fit golden god LD config above.
+        /*
+        if (timeElapsed < zoomDuration){
+            cam.orthographicSize = Mathf.Lerp(zoomStartValue, zoomEndValue, timeElapsed / zoomDuration);
+            vg.intensity.value = Mathf.Lerp(vigStartValue, vigEndValue, timeElapsed / zoomDuration);
+            ca.intensity.value = Mathf.Lerp(vigStartValue, vigEndValue, timeElapsed / zoomDuration);
+            timeElapsed += Time.deltaTime;
+        }
+        else{
+            cam.orthographicSize = 6;
+            vg.intensity.value = 0;
+            ca.intensity.value = 0;
+        }*/
 
     }
 
