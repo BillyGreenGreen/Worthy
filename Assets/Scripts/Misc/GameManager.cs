@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     // === PREFAB DURATION ABILITIES ===
     public Dictionary<GameObject, float> GM_DurationAbilities = new Dictionary<GameObject, float>();
 
+    // === MAGE CONFIG ===
+    public bool goldenGodActive = false;
+
     // === MISC ===
     public TextMeshProUGUI debug;
     public bool canDropAbilityInInventory;

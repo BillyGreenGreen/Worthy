@@ -2,20 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class Player : MonoBehaviour
 {
+    private static Vignette vg;
+    private static ChromaticAberration ca;
+    private static LensDistortion ld;
     public HealthBarPlayer healthBar;
     public int maxHealth = 100;
     public int health = 100;
     public int shieldAmount;
     public float dodgeChance = 0f;
 
+    public Collider2D colin;
+
     public TextMeshProUGUI healthText;
 
     private bool inMeleeRange = false;
     private float shieldTimer;
     private Dictionary<string, float> timers = new Dictionary<string, float>();
+
+    GameObject gpp;
+    Camera cam;
+    GameObject playerSprite;
+
+    //Golden God Cam Config
+    public bool goldenGodStart = false;
+    private float zoomDuration = 1.4f;
+    float zoomStartValue = 2;
+    float zoomEndValue = 6;
+    float ldStartValue = 0.4f;
+    float ldEndValue = 0;
+    Vector3 spriteFloorPos = new Vector3(0,0,0);
+    Vector3 spriteAirPos = new Vector3(0,0.1f,0);
+    float timeElapsed = 0;
+
+    private void Start() {
+        gpp = GameObject.Find("Global Post Processing");
+        gpp.GetComponent<Volume>().profile.TryGet(out ld);
+        cam = Camera.main;
+        playerSprite = GameObject.Find("PlayerSprite");
+    }
     private void Update(){
         List<string> timersCopy = new List<string>(timers.Keys);
         foreach (string timer in timersCopy){
@@ -50,6 +79,27 @@ public class Player : MonoBehaviour
         if (health <= 0){
             Die();
         }
+
+        //Golden God Cam Stuff
+        if (goldenGodStart){
+            
+            if (timeElapsed < zoomDuration){
+                cam.orthographicSize = Mathf.Lerp(zoomStartValue, zoomEndValue, timeElapsed / zoomDuration);
+                ld.intensity.value = Mathf.Lerp(ldStartValue, ldEndValue, timeElapsed / zoomDuration);
+                playerSprite.transform.localPosition = Vector3.Lerp(spriteFloorPos, spriteAirPos, timeElapsed/zoomDuration);
+                timeElapsed += Time.deltaTime;
+                GameManager.instance.playerCanMove = false;
+            }
+            else{
+                cam.orthographicSize = 6;
+                ld.intensity.value = 0;
+                goldenGodStart = false;
+                GameManager.instance.playerCanMove = true;
+            }
+        }
+        else{
+            timeElapsed = 0;
+        }
         
         
     }
@@ -71,30 +121,34 @@ public class Player : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        if (dodgeChance > 0){
-            float rng = Random.Range(1, 101);
-            if (rng >= dodgeChance){
+        if (!GameManager.instance.goldenGodActive){
+
+        
+            if (dodgeChance > 0){
+                float rng = Random.Range(1, 101);
+                if (rng >= dodgeChance){
+                    if (shieldAmount > 0){
+                    shieldAmount -= damage;
+                    //healthBar.RemoveShield(damage);
+                    }
+                    else{
+                        health -= damage;
+                        //healthBar.RemoveHealth(damage);
+                    }
+                }
+                else{
+                    Debug.Log("DODGED");
+                }
+            }
+            else{
                 if (shieldAmount > 0){
-                shieldAmount -= damage;
-                //healthBar.RemoveShield(damage);
+                    shieldAmount -= damage;
+                    //healthBar.RemoveShield(damage);
                 }
                 else{
                     health -= damage;
                     //healthBar.RemoveHealth(damage);
                 }
-            }
-            else{
-                Debug.Log("DODGED");
-            }
-        }
-        else{
-            if (shieldAmount > 0){
-                shieldAmount -= damage;
-                //healthBar.RemoveShield(damage);
-            }
-            else{
-                health -= damage;
-                //healthBar.RemoveHealth(damage);
             }
         }
         
@@ -102,8 +156,10 @@ public class Player : MonoBehaviour
 
     //colliding with other game objects that have physics
     private void OnCollisionEnter2D(Collision2D other) {
+        if (GameManager.instance.goldenGodActive){
+            Physics2D.IgnoreCollision(other.collider, colin);
+        }
         switch(other.transform.tag){
-            
         }
     }
 

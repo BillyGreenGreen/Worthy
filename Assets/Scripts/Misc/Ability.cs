@@ -47,10 +47,10 @@ public class Ability
         switch(this.name){
             //Mage
             case "Mage_GoldenGod":
-                icon = Resources.Load<Sprite>("Abilities/Mage_FlamePool_500px");
+                icon = Resources.Load<Sprite>("Abilities/Mage_GoldenGod_500px");
                 powerLevel = "Medium";
                 description = "<color=#FFFFFF>Become not a starter car but a finisher car, a transporter of gods, the golden god.";
-                cooldownTime = 10f;
+                cooldownTime = 2f;
                 baseCost = 200;
                 morphLevel = new Vector2Int(0,0);
                 break;

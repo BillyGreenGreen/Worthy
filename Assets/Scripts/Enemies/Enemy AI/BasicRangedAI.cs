@@ -45,21 +45,21 @@ public class BasicRangedAI : MonoBehaviour
     private void Update() {
 
         
-
-        //if in earthwarden change target
-        RotateTowardsTarget();
-        if (Vector2.Distance(target.position, transform.position) <= distanceToShoot){
-            int rng = Random.Range(0, 100);
-            if (rng <= 65){
-                ShootOne();
+        if (GameManager.instance.playerCanMove){
+            //if in earthwarden change target
+            RotateTowardsTarget();
+            if (Vector2.Distance(target.position, transform.position) <= distanceToShoot){
+                int rng = Random.Range(0, 100);
+                if (rng <= 65){
+                    ShootOne();
+                }
+                else if(rng > 65 && rng <= 90){
+                    ShootThree();
+                }
+                else if(rng > 90){
+                    ShootFive();
+                }
             }
-            else if(rng > 65 && rng <= 90){
-                ShootThree();
-            }
-            else if(rng > 90){
-                ShootFive();
-            }
-            
         }
     }
 
